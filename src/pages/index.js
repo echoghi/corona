@@ -122,8 +122,7 @@ const IndexPage = () => {
                 return L.circleMarker(latlng, {
                     className: 'icon',
                     radius: 20 * Math.log(cases / 10000),
-                    stroke: false,
-                    html
+                    stroke: false
                 }).bindTooltip(html);
             }
         });

@@ -7,7 +7,8 @@ import styled from 'styled-components';
 import { setCountry, getCountryChartData } from '../data/actions';
 
 const Results = styled.ul`
-    overflow-y: scroll;
+    overflow-y: auto;
+    height: 85%;
     overflow-x: hidden;
     padding: 0 1rem;
 
@@ -24,13 +25,17 @@ const Results = styled.ul`
     /* Handle */
     &::-webkit-scrollbar-thumb {
         background: #dfdbf0;
-        width: 10px;
+        width: 15px;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: #1a1053;
     }
+`;
+
+const ResultsContainer = styled.div`
+    height: 100%;
 `;
 
 const Result = styled.li`
@@ -108,7 +113,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData })
                     selectedItem,
                     getRootProps
                 }) => (
-                    <div>
+                    <ResultsContainer>
                         {/* <label {...getLabelProps()}>Enter a Country</label> */}
                         <div
                             style={{ display: 'inline-block' }}
@@ -143,7 +148,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData })
                                       ))
                                 : null}
                         </Results>
-                    </div>
+                    </ResultsContainer>
                 )}
             </Downshift>
         </Container>
