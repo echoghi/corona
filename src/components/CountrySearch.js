@@ -38,6 +38,7 @@ const Result = styled.li`
     padding: 1rem;
     border-radius: 1rem;
     display: flex;
+    color: #1a1053;
     align-items: center;
 
     &:hover {

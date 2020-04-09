@@ -18,8 +18,7 @@ const Map = ({
     defaultBaseMap = DEFAULT_MAP_SERVICE,
     mapEffect,
     selectedCountry,
-    zoom,
-    ...rest
+    zoom
 }) => {
     const mapRef = useRef();
 

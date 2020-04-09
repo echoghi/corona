@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 function CountryChart({ countryChartData }) {
     const data = [];
 
-    if (!countryChartData.timeline) return;
+    if (!countryChartData.timeline) return <div>Loading...</div>;
 
     for (let day in countryChartData.timeline.cases) {
         data.push({
@@ -20,13 +20,12 @@ function CountryChart({ countryChartData }) {
         });
     }
 
-    console.log(data);
     return (
         <AreaChart
             width={830}
             height={150}
             data={data}
-            margin={{ top: 0, right: 0, left: 15, bottom: 0 }}
+            margin={{ top: 0, right: 0, left: 10, bottom: 0 }}
         >
             <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">

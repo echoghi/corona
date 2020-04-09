@@ -12,6 +12,7 @@ import Map from 'components/Map';
 import Stats from 'components/Stats';
 import CountrySearch from '../components/CountrySearch';
 import CountryChart from '../components/CountryChart';
+import { numberWithCommas } from '../lib/util';
 
 const MapContainer = styled.div`
     background: #fff;
@@ -25,11 +26,6 @@ const MapContainer = styled.div`
     grid-gap: 2rem;
     max-height: 60vh;
     min-height: 60vh;
-`;
-
-const CountryStats = styled(Stats)`
-    grid-column-start: 2;
-    padding: 0;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -108,27 +104,27 @@ const IndexPage = () => {
                 }
 
                 const html = `
-          <span class="icon-marker">
-            <span class="icon-marker-tooltip">
-              <h2>${country}</h2>
-              <ul>
-                <li><strong>Confirmed:</strong> ${cases}</li>
-                <li><strong>Deaths:</strong> ${deaths}</li>
-                <li><strong>Recovered:</strong> ${recovered}</li>
-                <li><strong>Last Update:</strong> ${updatedFormatted}</li>
-              </ul>
-            </span>
-            ${casesString}
-          </span>
-        `;
+                  <div class="icon-marker">
+                      <h2>${country}</h2>
 
-                return L.marker(latlng, {
-                    icon: L.divIcon({
-                        className: 'icon',
-                        html
-                    }),
-                    riseOnHover: true
-                });
+                      <ul>
+                        <li><span class="category">Confirmed:</span> ${casesString}</li>
+                        <li><span class="category">Deaths:</span> ${numberWithCommas(deaths)}</li>
+                        <li><span class="category">Recovered:</span> ${numberWithCommas(
+                            recovered
+                        )}</li>
+                        </ul>
+
+                        <span>Last Updated ${updatedFormatted}</span>
+                  </div>
+                `;
+
+                return L.circleMarker(latlng, {
+                    className: 'icon',
+                    radius: 20 * Math.log(cases / 10000),
+                    stroke: false,
+                    html
+                }).bindTooltip(html);
             }
         });
 
