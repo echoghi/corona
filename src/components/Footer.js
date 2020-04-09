@@ -1,15 +1,13 @@
 import React from 'react';
 
-import Container from 'components/Container';
-
 const Footer = () => {
-  return (
-    <footer>
-      <Container>
-        <p>&copy; { new Date().getFullYear() }, My Gatsby Site</p>
-      </Container>
-    </footer>
-  );
+    return (
+        <footer>
+            <div>
+                <p>&copy; {new Date().getFullYear()}, Emile Choghi</p>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;
