@@ -6,13 +6,16 @@ import L from 'leaflet';
 import { Provider } from 'react-redux';
 import { store } from '../data/store';
 import { saveCountryData, getCountryChartData } from '../data/actions';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { keyframes, createGlobalStyle } from 'styled-components';
 import Layout from 'components/Layout';
 import Map from 'components/Map';
 import Stats from 'components/Stats';
 import CountrySearch from '../components/CountrySearch';
 import CountryChart from '../components/CountryChart';
 import { numberWithCommas } from '../lib/util';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVirus } from '@fortawesome/free-solid-svg-icons';
+import useStats from '../hooks/useStats';
 
 const MapContainer = styled.div`
     background: #fff;
@@ -26,6 +29,24 @@ const MapContainer = styled.div`
     grid-gap: 2rem;
     max-height: 60vh;
     min-height: 60vh;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoadingSpinner = styled(FontAwesomeIcon)`
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    text-align: center;
+    animation: ${rotate} 2s linear infinite;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -45,25 +66,33 @@ const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 4;
 
 const IndexPage = () => {
+    const { stats, loading, error } = useStats('https://corona.lmao.ninja/countries');
+
+    if (loading || !stats) return <LoadingSpinner icon={faVirus} color="#6dd428" size="5x" />;
+    if (error) return <p>Error: {error.message}</p>;
+
+    store.dispatch(saveCountryData(stats));
+    store.dispatch(getCountryChartData());
+
     /**
      * mapEffect
      * @description Fires a callback once the page renders
      * @example Here this is and example of being used to zoom in and set a popup on load
      */
     async function mapEffect({ leafletElement: map } = {}) {
-        let response;
+        // let response;
 
-        try {
-            response = await fetch('https://corona.lmao.ninja/countries').then(res => res.json());
+        // try {
+        //     response = await fetch('https://corona.lmao.ninja/countries').then(res => res.json());
 
-            store.dispatch(saveCountryData(response));
-            store.dispatch(getCountryChartData());
-        } catch (e) {
-            console.log(`Failed to fetch countries: ${e.message}`, e);
-            return;
-        }
+        // store.dispatch(saveCountryData(response));
+        // store.dispatch(getCountryChartData());
+        // } catch (e) {
+        //     console.log(`Failed to fetch countries: ${e.message}`, e);
+        //     return;
+        // }
 
-        const data = response || [];
+        const data = stats || [];
         const hasData = Array.isArray(data) && data.length > 0;
 
         if (!hasData) return;

@@ -19,9 +19,10 @@ export const Results = styled.ul`
     }
 
     /* Handle */
-    ::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb {
         background: #dfdbf0;
         width: 15px;
+        border-radius: 1rem;
     }
 
     /* Handle on hover */
