@@ -10,11 +10,12 @@ import styled, { keyframes, createGlobalStyle } from 'styled-components';
 import Layout from 'components/Layout';
 import Map from 'components/Map';
 import Stats from 'components/Stats';
+import ErrorMessage from 'components/ErrorMessage';
+import LoadingSpinner from 'components/LoadingSpinner';
 import CountrySearch from '../components/CountrySearch';
 import CountryChart from '../components/CountryChart';
 import { numberWithCommas } from '../lib/util';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVirus } from '@fortawesome/free-solid-svg-icons';
+
 import useStats from '../hooks/useStats';
 
 const MapContainer = styled.div`
@@ -29,24 +30,6 @@ const MapContainer = styled.div`
     grid-gap: 2rem;
     max-height: 60vh;
     min-height: 60vh;
-`;
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const LoadingSpinner = styled(FontAwesomeIcon)`
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    text-align: center;
-    animation: ${rotate} 2s linear infinite;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -68,8 +51,8 @@ const DEFAULT_ZOOM = 4;
 const IndexPage = () => {
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/countries');
 
-    if (loading || !stats) return <LoadingSpinner icon={faVirus} color="#6dd428" size="5x" />;
-    if (error) return <p>Error: {error.message}</p>;
+    if (loading || !stats) return <LoadingSpinner />;
+    if (error) return <ErrorMessage />;
 
     store.dispatch(saveCountryData(stats));
     store.dispatch(getCountryChartData());
