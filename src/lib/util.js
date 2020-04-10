@@ -11,3 +11,10 @@ export function isDomAvailable() {
 export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export function getPercentageChange(oldNumber, newNumber) {
+    const decreaseValue = newNumber - oldNumber;
+    const percentChange = (decreaseValue / oldNumber) * 100;
+
+    return percentChange.toFixed(2);
+}

@@ -15,7 +15,6 @@ export default function useStats(url) {
                 .catch(err => setError(err));
 
             if (!data.error) {
-                console.log(data);
                 setStats(data);
             }
 

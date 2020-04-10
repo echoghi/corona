@@ -4,10 +4,12 @@ import useStats from '../hooks/useStats';
 import styled from 'styled-components';
 import { numberWithCommas } from '../lib/util';
 
+import StatChange from './StatChange';
+
 const StatBlock = styled.div`
     background: #fff;
     font-size: 2rem;
-    padding: 2rem;
+    padding: 2rem 3rem;
     border-radius: 1rem;
     display: grid;
     align-items: center;
@@ -22,32 +24,26 @@ const StatBlock = styled.div`
     }
 `;
 
-const Confirmed = styled(StatBlock)`
-    span {
-        color: black;
-        font-weight: bold;
-    }
+const Confirmed = styled.span`
+    color: black;
+    font-weight: bold;
 `;
 
-const Recovered = styled(StatBlock)`
-    span {
-        color: #1cb142;
-        font-weight: bold;
-    }
+const Recovered = styled.span`
+    color: #6dd428;
+    font-weight: bold;
 `;
 
-const Deaths = styled(StatBlock)`
-    span {
-        color: #f9345e;
-        font-weight: bold;
-    }
+const Deaths = styled.span`
+    color: #f9345e;
+    font-weight: bold;
 `;
 
 const StatGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: ${props => (props.noPadding ? '0' : '2rem 0')};
-    grid-gap: 5rem;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2rem 0 3rem;
+    grid-gap: 2rem;
     grid-column-start: 2;
 `;
 
@@ -55,27 +51,57 @@ const mapStateToProps = state => ({
     selectedCountry: state.selectedCountry
 });
 
-function Stats({ url, selectedCountry }) {
-    const searchUrl = url || `https://covid19.mathdro.id/api/countries/${selectedCountry.iso3}`;
-    const { stats, loading, error } = useStats(searchUrl);
+function Stats({ url }) {
+    const { stats, loading, error } = useStats(url);
+    const yesterdayData = useStats('https://corona.lmao.ninja/yesterday/all');
 
-    if (loading || !stats) return <p>Loading...</p>;
+    if (loading || !stats || !yesterdayData.stats) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <StatGrid noPadding={!url}>
-            <Confirmed>
+        <StatGrid>
+            <StatBlock>
                 <h4>Confirmed:</h4>
-                <span>{numberWithCommas(stats.confirmed.value)}</span>
-            </Confirmed>
-            <Recovered>
+                <Confirmed>{numberWithCommas(stats.cases)}</Confirmed>
+                <StatChange
+                    current={stats.cases}
+                    old={yesterdayData.stats.cases}
+                    upColor="#f9345e"
+                    downColor="#6dd428"
+                />
+            </StatBlock>
+            <StatBlock>
+                <h4>New Cases:</h4>
+                <Confirmed>{numberWithCommas(stats.todayCases)}</Confirmed>
+                <StatChange
+                    current={stats.todayCases}
+                    old={yesterdayData.stats.todayCases}
+                    upColor="#f9345e"
+                    downColor="#6dd428"
+                />
+            </StatBlock>
+            <StatBlock>
                 <h4>Recovered:</h4>
-                <span>{numberWithCommas(stats.recovered.value)}</span>
-            </Recovered>
-            <Deaths>
+                <Recovered>{numberWithCommas(stats.recovered)}</Recovered>
+
+                <StatChange
+                    current={stats.recovered}
+                    old={yesterdayData.stats.recovered}
+                    upColor="#6dd428"
+                    downColor="#f9345e"
+                />
+            </StatBlock>
+            <StatBlock>
                 <h4>Deaths:</h4>
-                <span>{numberWithCommas(stats.deaths.value)}</span>
-            </Deaths>
+                <Deaths>{numberWithCommas(stats.deaths)}</Deaths>
+
+                <StatChange
+                    current={stats.deaths}
+                    old={yesterdayData.stats.deaths}
+                    upColor="#f9345e"
+                    downColor="#6dd428"
+                />
+            </StatBlock>
         </StatGrid>
     );
 }

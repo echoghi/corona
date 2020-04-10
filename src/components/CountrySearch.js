@@ -1,5 +1,4 @@
 import React from 'react';
-import useStats from '../hooks/useStats';
 import Downshift from 'downshift';
 
 import { connect } from 'react-redux';
@@ -87,19 +86,18 @@ const mapDispatchToProps = {
 };
 
 function CountrySearch({ countryData, setSelectedCountry, getCountryChartData }) {
-    // const { stats, loading, error } = useStats('https://covid19.mathdro.id/api/countries');
-
     if (!countryData) return <p>Loading...</p>;
+
+    function handleSelection(selection) {
+        getCountryChartData(selection.countryInfo.iso3);
+        setSelectedCountry(selection.countryInfo);
+    }
 
     return (
         <Container>
             <Downshift
                 defaultIsOpen
-                onChange={selection => {
-                    console.log(selection);
-                    getCountryChartData(selection.countryInfo.iso3);
-                    setSelectedCountry(selection.countryInfo);
-                }}
+                onChange={handleSelection}
                 itemToString={item => (item ? item.country : '')}
             >
                 {({

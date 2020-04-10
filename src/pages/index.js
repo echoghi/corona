@@ -145,7 +145,7 @@ const IndexPage = () => {
                     <title>Covid-19 - Global Trend</title>
                 </Helmet>
 
-                <Stats url="https://covid19.mathdro.id/api" />
+                <Stats url="https://corona.lmao.ninja/all" />
 
                 <MapContainer>
                     <CountrySearch />
