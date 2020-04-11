@@ -14,7 +14,7 @@ function Stats({ url }) {
     const { stats, loading, error } = useStats(url);
     const yesterdayData = useStats('https://corona.lmao.ninja/yesterday/all');
 
-    if (loading || !stats || !yesterdayData.stats) return <p>Loading...</p>;
+    if (loading || !stats || !yesterdayData.stats) return null;
     if (error) return <p>Error: {error.message}</p>;
 
     return (

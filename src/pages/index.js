@@ -51,7 +51,7 @@ const DEFAULT_ZOOM = 4;
 const IndexPage = () => {
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/countries');
 
-    if (loading || !stats) return <LoadingSpinner />;
+    if (loading || !stats) return <LoadingSpinner fullPage />;
     if (error) return <ErrorMessage />;
 
     store.dispatch(saveCountryData(stats));
@@ -63,22 +63,11 @@ const IndexPage = () => {
      * @example Here this is and example of being used to zoom in and set a popup on load
      */
     async function mapEffect({ leafletElement: map } = {}) {
-        // let response;
-
-        // try {
-        //     response = await fetch('https://corona.lmao.ninja/countries').then(res => res.json());
-
-        // store.dispatch(saveCountryData(response));
-        // store.dispatch(getCountryChartData());
-        // } catch (e) {
-        //     console.log(`Failed to fetch countries: ${e.message}`, e);
-        //     return;
-        // }
-
         const data = stats || [];
         const hasData = Array.isArray(data) && data.length > 0;
 
         if (!hasData) return;
+
         const geoJson = {
             type: 'FeatureCollection',
             features: data.map((country = {}) => {

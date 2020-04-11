@@ -14,6 +14,10 @@ const Heading = styled.h1`
     margin: 2rem 0;
     color: #1a1053;
     font-weight: normal;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+}
 `;
 
 const Container = styled.div`

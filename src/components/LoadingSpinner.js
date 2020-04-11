@@ -19,8 +19,8 @@ const Container = styled.div`
     display: grid;
     align-items: center;
     align-content: center;
-    height: 100vh;
-    width: 100vw;
+    height: ${props => (props.fullPage ? '100vh' : 'auto')};
+    width: ${props => (props.fullPage ? '100vw' : 'auto')};
     text-align: center;
     justify-content: center;
     text-align: center;
@@ -30,9 +30,9 @@ const Spinner = styled(FontAwesomeIcon)`
     animation: ${rotate} 2s linear infinite;
 `;
 
-export default function LoadingSpinner() {
+export default function LoadingSpinner({ fullPage }) {
     return (
-        <Container>
+        <Container fullPage={fullPage}>
             <Spinner icon={faVirus} color="#6dd428" size="5x" />
         </Container>
     );

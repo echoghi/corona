@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Map as BaseMap, TileLayer, ZoomControl } from 'react-leaflet';
@@ -52,6 +52,7 @@ const Map = ({
         className: 'map-base',
         zoomControl: false,
         center: [selectedCountry.lat, selectedCountry.long],
+        useFlyTo: true,
         zoom
     };
 

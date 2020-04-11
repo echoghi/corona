@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const StatBlock = styled.div`
@@ -16,6 +15,23 @@ export const StatBlock = styled.div`
         margin: 0.5rem 1rem;
         font-size: 20px;
         color: #1a1053;
+    }
+
+    @media (max-width: 767px) {
+        display: flex;
+        background: transparent;
+        box-shadow: none;
+        margin: 0;
+        padding: 1rem 0;
+        text-align: left;
+        font-size: 1rem;
+
+        h4 {
+            margin: 0;
+            padding: 0;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
     }
 `;
 
@@ -40,4 +56,9 @@ export const StatGrid = styled.div`
     padding: 2rem 0 3rem;
     grid-gap: 2rem;
     grid-column-start: 2;
+
+    @media (max-width: 767px) {
+        display: block;
+        padding: 0;
+    }
 `;
