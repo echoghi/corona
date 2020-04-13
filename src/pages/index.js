@@ -1,8 +1,5 @@
 /* eslint-disable import/first */
 import React from 'react';
-import { Provider } from 'react-redux';
-
-import { store } from '../data/store';
 import { createGlobalStyle } from 'styled-components';
 import App from '../components/App';
 
@@ -17,10 +14,10 @@ const GlobalStyle = createGlobalStyle`
 
 const IndexPage = () => {
     return (
-        <Provider store={store}>
+        <>
             <GlobalStyle />
             <App />
-        </Provider>
+        </>
     );
 };
 

@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore as createReduxStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { appState } from './reducers';
 
-export const store = compose(applyMiddleware(thunk))(createStore)(appState);
+export const createStore = () => compose(applyMiddleware(thunk))(createReduxStore)(appState);
