@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import theme from '../../lib/theme';
 
 export const Results = styled.ul`
     overflow-y: auto;
@@ -40,7 +41,7 @@ export const Result = styled.li`
     padding: 1rem;
     border-radius: 1rem;
     display: flex;
-    color: #1a1053;
+    color: ${props => (!props.darkMode ? '#1a1053' : theme.white.primary)};
     align-items: center;
 
     &:hover {

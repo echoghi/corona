@@ -17,7 +17,8 @@ import { faSearchLocation } from '@fortawesome/free-solid-svg-icons';
 
 const mapStateToProps = state => ({
     selectedCountry: state.selectedCountry,
-    countryData: state.countryData
+    countryData: state.countryData,
+    darkMode: state.darkMode
 });
 
 const mapDispatchToProps = {
@@ -25,7 +26,7 @@ const mapDispatchToProps = {
     getCountryChartData: country => getCountryChartData(country)
 };
 
-function CountrySearch({ countryData, setSelectedCountry, getCountryChartData }) {
+function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, darkMode }) {
     if (!countryData) return <p>Loading...</p>;
 
     function handleSelection(selection) {
@@ -69,6 +70,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData })
                                       )
                                       .map((item, index) => (
                                           <Result
+                                              darkMode={darkMode}
                                               {...getItemProps({
                                                   key: item.country,
                                                   index,

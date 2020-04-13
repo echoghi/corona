@@ -25,6 +25,12 @@ export function closeCountryModal() {
     };
 }
 
+export function toggleDarkMode() {
+    return {
+        type: 'TOGGLE_DARK_MODE'
+    };
+}
+
 export function saveCountryChartData(data) {
     return {
         type: 'SAVE_COUNTRY_CHART_DATA',

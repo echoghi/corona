@@ -1,5 +1,11 @@
+import Cookies from 'universal-cookie';
+import theme from '../lib/theme';
+
+const cookies = new Cookies();
+
 export function appState(
     state = {
+        darkMode: JSON.parse(cookies.get('isDark')) || false,
         selectedCountry: {
             iso3: 'USA',
             lat: 38,
@@ -28,6 +34,13 @@ export function appState(
             return { ...state, countryModal, modalData: action.data };
         case 'CLOSE_MODAL':
             return { ...state, countryModal: false, modalData: {} };
+        case 'TOGGLE_DARK_MODE':
+            cookies.set('isDark', !state.darkMode, { path: '/' });
+
+            document.getElementsByTagName('body')[0].style.background = !state.darkMode
+                ? theme.dark.primary
+                : theme.white.primary;
+            return { ...state, darkMode: !state.darkMode };
         default:
             return state;
     }

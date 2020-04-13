@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import theme from '../../lib/theme';
 
 export const StatBlock = styled.div`
-    background: #fff;
+    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
     font-size: 2rem;
     padding: 2rem 3rem;
     border-radius: 1rem;
@@ -9,44 +10,46 @@ export const StatBlock = styled.div`
     align-items: center;
     justify-items: center;
     text-align: center;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: ${props => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
+    transition: ${theme.transitions.darkMode};
 
     h4 {
         margin: 0.5rem 1rem;
         font-size: 20px;
-        color: #1a1053;
+        color: ${props => (!props.darkMode ? '#1a1053' : theme.white.primary)};
     }
 
     @media (max-width: 767px) {
         display: flex;
+        justify-content: center;
         background: transparent;
         box-shadow: none;
         margin: 0;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         text-align: left;
         font-size: 1rem;
 
         h4 {
             margin: 0;
             padding: 0;
-            margin-right: 10px;
+            margin: 0 10px;
             font-size: 1rem;
         }
     }
 `;
 
 export const Confirmed = styled.span`
-    color: black;
+    color: ${props => (!props.darkMode ? '#000' : theme.white.primary)};
     font-weight: bold;
 `;
 
 export const Recovered = styled.span`
-    color: #6dd428;
+    color: ${props => (!props.darkMode ? '#6dd428' : theme.white.primary)};
     font-weight: bold;
 `;
 
 export const Deaths = styled.span`
-    color: #f9345e;
+    color: ${props => (!props.darkMode ? '#f9345e' : theme.white.primary)};
     font-weight: bold;
 `;
 
@@ -59,6 +62,7 @@ export const StatGrid = styled.div`
 
     @media (max-width: 767px) {
         display: block;
+        margin-top: 5rem;
         padding: 0;
     }
 `;

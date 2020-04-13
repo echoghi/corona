@@ -7,10 +7,11 @@ import { StatBlock, Confirmed, Recovered, Deaths, StatGrid } from './styles';
 import StatChange from '../StatChange';
 
 const mapStateToProps = state => ({
-    selectedCountry: state.selectedCountry
+    selectedCountry: state.selectedCountry,
+    darkMode: state.darkMode
 });
 
-function Stats({ url }) {
+function Stats({ url, darkMode }) {
     const { stats, loading, error } = useStats(url);
     const yesterdayData = useStats('https://corona.lmao.ninja/yesterday/all');
 
@@ -18,10 +19,10 @@ function Stats({ url }) {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <StatGrid>
-            <StatBlock>
-                <h4>Confirmed:</h4>
-                <Confirmed>{numberWithCommas(stats.cases)}</Confirmed>
+        <StatGrid darkMode={darkMode}>
+            <StatBlock darkMode={darkMode}>
+                <Confirmed darkMode={darkMode}>{numberWithCommas(stats.cases)}</Confirmed>
+                <h4>Confirmed</h4>
                 <StatChange
                     current={stats.cases}
                     old={yesterdayData.stats.cases}
@@ -29,9 +30,9 @@ function Stats({ url }) {
                     downColor="#6dd428"
                 />
             </StatBlock>
-            <StatBlock>
-                <h4>New Cases:</h4>
-                <Confirmed>{numberWithCommas(stats.todayCases)}</Confirmed>
+            <StatBlock darkMode={darkMode}>
+                <Confirmed darkMode={darkMode}>{numberWithCommas(stats.todayCases)}</Confirmed>
+                <h4>New Cases</h4>
                 <StatChange
                     current={stats.todayCases}
                     old={yesterdayData.stats.todayCases}
@@ -39,9 +40,9 @@ function Stats({ url }) {
                     downColor="#6dd428"
                 />
             </StatBlock>
-            <StatBlock>
-                <h4>Recovered:</h4>
-                <Recovered>{numberWithCommas(stats.recovered)}</Recovered>
+            <StatBlock darkMode={darkMode}>
+                <Recovered darkMode={darkMode}>{numberWithCommas(stats.recovered)}</Recovered>
+                <h4>Recovered</h4>
 
                 <StatChange
                     current={stats.recovered}
@@ -50,9 +51,9 @@ function Stats({ url }) {
                     downColor="#f9345e"
                 />
             </StatBlock>
-            <StatBlock>
-                <h4>Deaths:</h4>
-                <Deaths>{numberWithCommas(stats.deaths)}</Deaths>
+            <StatBlock darkMode={darkMode}>
+                <Deaths darkMode={darkMode}>{numberWithCommas(stats.deaths)}</Deaths>
+                <h4>Deaths</h4>
 
                 <StatChange
                     current={stats.deaths}

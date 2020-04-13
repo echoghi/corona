@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { getPercentageChange } from '../lib/util';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import theme from '../lib/theme';
 
 const Difference = styled.span`
     font-size: 0.8rem;
     margin: 0.5rem;
-    color: #1a1053;
+    color: ${props => (!props.darkMode ? '#1a1053' : theme.white.primary)};
 `;
 
 const Percentage = styled.span`
@@ -15,7 +17,11 @@ const Percentage = styled.span`
     font-weight: bold;
 `;
 
-export default function StatChange({ current, old, upColor, downColor }) {
+const mapStateToProps = state => ({
+    darkMode: state.darkMode
+});
+
+function StatChange({ current, old, upColor, downColor, darkMode }) {
     const percentChange = getPercentageChange(old, current);
 
     function ChangeIcon() {
@@ -29,9 +35,11 @@ export default function StatChange({ current, old, upColor, downColor }) {
     }
 
     return (
-        <Difference>
+        <Difference darkMode={darkMode}>
             <Percentage>{`${percentChange}%`}</Percentage>
             <ChangeIcon percent={percentChange} />
         </Difference>
     );
 }
+
+export default connect(mapStateToProps)(StatChange);

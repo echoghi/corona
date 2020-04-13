@@ -9,21 +9,9 @@
 
 body {
     font-family: $font-default;
+    transition: background-color 0.2s linear;
     padding: 0;
     margin: 0;
-}
-
-.wrapper {
-    min-height: 100vh;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 3rem;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-
-    @media (max-width: 767px) {
-        padding: 0 1rem;
-    }
 }
 
 main {

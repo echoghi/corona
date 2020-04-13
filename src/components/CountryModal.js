@@ -5,6 +5,7 @@ import { closeCountryModal } from '../data/actions';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { numberWithCommas } from '../lib/util';
+import theme from '../lib/theme';
 
 export const CloseIcon = styled(FontAwesomeIcon)`
     position: fixed;
@@ -24,12 +25,12 @@ export const CloseIcon = styled(FontAwesomeIcon)`
 const Contqiner = styled.div`
     display: ${props => (props.active ? 'block' : 'none')};
     position: absolute;
-    background: #fff;
+    background: ${props => (!props.darkMode ? '#fff' : '#272727')};
     border-radius: 0.5rem;
     z-index: 999999;
     text-align: left;
     box-sizing: border-box;
-    color: #1a1053;
+    color: ${props => (props.darkMode ? '#fff' : '#1a1053')};
     font-size: 0.7rem;
     font-weight: bold;
     padding: 1rem;
@@ -70,7 +71,7 @@ const Header = styled.h2`
 const List = styled.ul`
     list-style: none;
     padding: 0;
-    color: #f9345e;
+    color: ${props => (props.darkMode ? theme.white.primary : '#f9345e')};
 `;
 
 const ListItem = styled.li`
@@ -78,7 +79,7 @@ const ListItem = styled.li`
     padding: 2.5px 0;
 
     span {
-        color: #1a1053;
+        color: ${props => (props.darkMode ? theme.white.primary : '#1a1053')};
     }
 
     @media (max-width: 767px) {
@@ -90,6 +91,7 @@ const ListItem = styled.li`
 
 const mapStateToProps = state => ({
     modalActive: state.countryModal,
+    darkMode: state.darkMode,
     ...state.modalData
 });
 
@@ -104,22 +106,25 @@ const countryModal = ({
     deaths,
     recovered,
     closeCountryModal,
-    updatedFormatted
+    updatedFormatted,
+    darkMode
 }) => {
+    const iconColor = !darkMode ? '#1a1053' : theme.white.primary;
+
     return (
-        <Contqiner active={modalActive}>
-            <CloseIcon color="#1a1053" size="3x" icon={faTimes} onClick={closeCountryModal} />
+        <Contqiner active={modalActive} darkMode={darkMode}>
+            <CloseIcon color={iconColor} size="3x" icon={faTimes} onClick={closeCountryModal} />
             <div>
                 <Header>{country}</Header>
 
-                <List>
-                    <ListItem>
+                <List darkMode={darkMode}>
+                    <ListItem darkMode={darkMode}>
                         <span>Confirmed:</span> {casesString}
                     </ListItem>
-                    <ListItem>
+                    <ListItem darkMode={darkMode}>
                         <span>Deaths:</span> {numberWithCommas(deaths)}
                     </ListItem>
-                    <ListItem>
+                    <ListItem darkMode={darkMode}>
                         <span>Recovered:</span> {numberWithCommas(recovered)}
                     </ListItem>
                 </List>

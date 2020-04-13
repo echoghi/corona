@@ -32,6 +32,7 @@
         "redux": "4.0.5",
         "redux-thunk": "2.3.0",
         "styled-components": "5.1.0",
+        "universal-cookie": "4.0.3",
         "yarn": "1.22.4"
     },
     "devDependencies": {
@@ -69,22 +70,11 @@
         "serve": "gatsby serve",
         "test": "jest --config ./config/jest.config.js"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "**/*.js": [
-            "yarn format",
-            "yarn lint"
-        ]
-    },
     "repository": {
         "type": "git",
-        "url": "https://github.com/colbyfayock/gatsby-starter-leaflet"
+        "url": "https://github.com/echoghi/corona"
     },
     "bugs": {
-        "url": "https://github.com/colbyfayock/gatsby-starter-leaflet/issues"
+        "url": "https://github.com/echoghi/corona/issues"
     }
 }

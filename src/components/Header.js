@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import DarkMode from './DarkMode';
+import theme from '../lib/theme';
 
 const Heading = styled.h1`
-    color: #6135fc;
+    color: ${props => (!props.darkMode ? '#6135fc' : theme.white.primary)};
+
     font-size: 35px;
     margin: 2rem 0;
     font-weight: bold;
-
     align-items: center;
-
     display: flex;
 
     @media (max-width: 767px) {
@@ -19,15 +21,36 @@ const Heading = styled.h1`
 
 const Container = styled.div`
     grid-column-start: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;
 
-const Header = () => {
+const Wrapper = styled.header`
+    transition: ${theme.transitions.darkMode};
+    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
+
+    @media (max-width: 767px) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        padding: 0 15px;
+    }
+`;
+
+const mapStateToProps = state => ({
+    darkMode: state.darkMode
+});
+
+const Header = ({ darkMode }) => {
     return (
-        <header>
+        <Wrapper darkMode={darkMode}>
             <Container>
-                <Heading>
+                <Heading darkMode={darkMode}>
                     <span>Covid-19</span>
                 </Heading>
+                <DarkMode />
                 {/* <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -37,8 +60,8 @@ const Header = () => {
                     </li>
                 </ul> */}
             </Container>
-        </header>
+        </Wrapper>
     );
 };
 
-export default Header;
+export default connect(mapStateToProps)(Header);
