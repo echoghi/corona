@@ -20,6 +20,10 @@ body {
     padding: 0 3rem;
     display: grid;
     grid-template-rows: auto 1fr auto;
+
+    @media (max-width: 767px) {
+        padding: 0 1rem;
+    }
 }
 
 main {

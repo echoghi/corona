@@ -3,21 +3,18 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 const Heading = styled.h1`
-    span {
-        color: #6135fc;
-        font-size: 35px;
-        margin-right: 2rem;
-        font-weight: bold;
-    }
-
-    font-size: 30px;
+    color: #6135fc;
+    font-size: 35px;
     margin: 2rem 0;
-    color: #1a1053;
-    font-weight: normal;
+    font-weight: bold;
+
     align-items: center;
-    justify-content: flex-start;
+
     display: flex;
-}
+
+    @media (max-width: 767px) {
+        font-size: 20px;
+    }
 `;
 
 const Container = styled.div`
@@ -30,7 +27,6 @@ const Header = () => {
             <Container>
                 <Heading>
                     <span>Covid-19</span>
-                    Global Trend
                 </Heading>
                 {/* <ul>
                     <li>

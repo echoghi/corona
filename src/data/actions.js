@@ -12,6 +12,19 @@ export function saveCountryData(data) {
     };
 }
 
+export function toggleCountryModal(data = {}) {
+    return {
+        type: 'TOGGLE_MODAL',
+        data
+    };
+}
+
+export function closeCountryModal() {
+    return {
+        type: 'CLOSE_MODAL'
+    };
+}
+
 export function saveCountryChartData(data) {
     return {
         type: 'SAVE_COUNTRY_CHART_DATA',

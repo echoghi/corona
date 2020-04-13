@@ -5,7 +5,9 @@ export function appState(
             lat: 38,
             long: -97
         },
-        countryChartData: []
+        countryChartData: [],
+        countryModal: false,
+        modalData: {}
     },
     action
 ) {
@@ -16,6 +18,16 @@ export function appState(
             return { ...state, countryData: action.data };
         case 'SAVE_COUNTRY_CHART_DATA':
             return { ...state, countryChartData: action.data };
+        case 'TOGGLE_MODAL':
+            let countryModal = !state.countryModal;
+            if (
+                state.countryModal &&
+                action.data.countryInfo.iso3 !== state.modalData.countryInfo.iso3
+            )
+                countryModal = true;
+            return { ...state, countryModal, modalData: action.data };
+        case 'CLOSE_MODAL':
+            return { ...state, countryModal: false, modalData: {} };
         default:
             return state;
     }

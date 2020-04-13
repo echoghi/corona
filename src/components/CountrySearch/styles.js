@@ -53,6 +53,10 @@ export const Container = styled.div`
     overflow: hidden;
     grid-row-start: 1;
     grid-row-end: 3;
+
+    @media (max-width: 767px) {
+        display: none;
+    }
 `;
 
 export const Input = styled.input`

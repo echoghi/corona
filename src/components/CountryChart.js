@@ -1,10 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AreaChart, XAxis, YAxis, CartesianGrid, Area, Tooltip } from 'recharts';
+import styled from 'styled-components';
 
 const mapStateToProps = state => ({
     countryChartData: state.countryChartData
 });
+
+export const Chart = styled(AreaChart)`
+    @media (max-width: 767px) {
+        display: none;
+    }
+`;
 
 function CountryChart({ countryChartData }) {
     const data = [];
@@ -21,7 +28,7 @@ function CountryChart({ countryChartData }) {
     }
 
     return (
-        <AreaChart
+        <Chart
             width={830}
             height={150}
             data={data}
@@ -62,7 +69,7 @@ function CountryChart({ countryChartData }) {
                 fillOpacity={1}
                 fill="url(#colorPv)"
             />
-        </AreaChart>
+        </Chart>
     );
 }
 

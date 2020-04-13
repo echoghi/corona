@@ -5,8 +5,8 @@ import Helmet from 'react-helmet';
 import L from 'leaflet';
 import { Provider } from 'react-redux';
 import { store } from '../data/store';
-import { saveCountryData, getCountryChartData } from '../data/actions';
-import styled, { keyframes, createGlobalStyle } from 'styled-components';
+import { saveCountryData, getCountryChartData, toggleCountryModal } from '../data/actions';
+import styled, { createGlobalStyle } from 'styled-components';
 import Layout from 'components/Layout';
 import Map from 'components/Map';
 import Stats from 'components/Stats';
@@ -14,11 +14,12 @@ import ErrorMessage from 'components/ErrorMessage';
 import LoadingSpinner from 'components/LoadingSpinner';
 import CountrySearch from '../components/CountrySearch';
 import CountryChart from '../components/CountryChart';
-import { numberWithCommas } from '../lib/util';
+import CountryModal from '../components/CountryModal';
 
 import useStats from '../hooks/useStats';
 
 const MapContainer = styled.div`
+    position: relative;
     background: #fff;
     border-radius: 1rem;
     padding: 2rem;
@@ -30,6 +31,12 @@ const MapContainer = styled.div`
     grid-gap: 2rem;
     max-height: 60vh;
     min-height: 60vh;
+
+    @media (max-width: 767px) {
+        display: block;
+        padding: 0;
+        margin: 1rem 0;
+    }
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -92,7 +99,7 @@ const IndexPage = () => {
                 let updatedFormatted;
                 let casesString;
 
-                const { country, updated, cases, deaths, recovered } = properties;
+                const { updated, cases } = properties;
 
                 casesString = `${cases}`;
 
@@ -104,27 +111,38 @@ const IndexPage = () => {
                     updatedFormatted = new Date(updated).toLocaleString();
                 }
 
-                const html = `
-                  <div class="icon-marker">
-                      <h2>${country}</h2>
+                const options = {
+                    casesString,
+                    updatedFormatted,
+                    ...properties
+                };
 
-                      <ul>
-                        <li><span class="category">Confirmed:</span> ${casesString}</li>
-                        <li><span class="category">Deaths:</span> ${numberWithCommas(deaths)}</li>
-                        <li><span class="category">Recovered:</span> ${numberWithCommas(
-                            recovered
-                        )}</li>
-                        </ul>
+                // const html = `
+                //   <div class="tooltip">
+                //       <h2>${country}</h2>
 
-                        <span>Last Updated ${updatedFormatted}</span>
-                  </div>
-                `;
+                //       <ul>
+                //         <li><span class="category">Confirmed:</span> ${casesString}</li>
+                //         <li><span class="category">Deaths:</span> ${numberWithCommas(deaths)}</li>
+                //         <li><span class="category">Recovered:</span> ${numberWithCommas(
+                //             recovered
+                //         )}</li>
+                //         </ul>
+
+                //         <span>Last Updated ${updatedFormatted}</span>
+                //   </div>
+                // `;
 
                 return L.circleMarker(latlng, {
                     className: 'icon',
                     radius: 20 * Math.log(cases / 10000),
-                    stroke: false
-                }).bindTooltip(html);
+                    stroke: false,
+                    click: e => {
+                        console.log(e);
+                    }
+                }).on('click', function (e) {
+                    store.dispatch(toggleCountryModal(options));
+                });
             }
         });
 
@@ -152,6 +170,7 @@ const IndexPage = () => {
                     <CountrySearch />
                     <Map {...mapSettings} />
                     <CountryChart />
+                    <CountryModal />
                 </MapContainer>
             </Layout>
         </Provider>
