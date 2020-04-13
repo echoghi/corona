@@ -133,13 +133,14 @@ const IndexPage = () => {
                 //   </div>
                 // `;
 
+                const min = 1;
+                const factor = 5;
+                const zoomFactor = DEFAULT_ZOOM >= 5 ? 1 : DEFAULT_ZOOM / 10; // adjust divisor for best optics
+
                 return L.circleMarker(latlng, {
                     className: 'icon',
-                    radius: 20 * Math.log(cases / 10000),
-                    stroke: false,
-                    click: e => {
-                        console.log(e);
-                    }
+                    radius: Math.floor(Math.log(cases) * factor * zoomFactor) + min,
+                    stroke: false
                 }).on('click', function (e) {
                     store.dispatch(toggleCountryModal(options));
                 });
