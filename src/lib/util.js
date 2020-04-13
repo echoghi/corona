@@ -35,7 +35,7 @@ export function setTheme() {
         console.log(err);
     }
 
-    document.getElementsByTagName('body')[0].style.background = !isDark
+    document.getElementsByTagName('html')[0].style.background = !isDark
         ? theme.white.primary
         : theme.dark.primary;
 }

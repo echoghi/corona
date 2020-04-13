@@ -45,7 +45,7 @@ export function appState(
         case 'TOGGLE_DARK_MODE':
             cookies.set('isDark', !state.darkMode, { path: '/' });
 
-            document.getElementsByTagName('body')[0].style.background = !state.darkMode
+            document.getElementsByTagName('html')[0].style.background = !state.darkMode
                 ? theme.dark.primary
                 : theme.white.primary;
             return { ...state, darkMode: !state.darkMode };

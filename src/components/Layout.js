@@ -22,6 +22,7 @@ export const Wrapper = styled.div`
 
     @media (max-width: 767px) {
         padding: 0 1rem;
+        margin-bottom: 4rem;
     }
 `;
 
@@ -44,7 +45,7 @@ const Layout = ({ children, pageName, darkMode }) => {
             <Wrapper darkMode={darkMode}>
                 <Header />
                 <main>{children}</main>
-                <Footer />
+                <Footer darkMode={darkMode} />
             </Wrapper>
         </>
     );
