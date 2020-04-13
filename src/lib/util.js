@@ -27,7 +27,13 @@ export function getPercentageChange(oldNumber, newNumber) {
 }
 
 export function setTheme() {
-    const isDark = JSON.parse(cookies.get('isDark'));
+    let isDark = false;
+
+    try {
+        isDark = JSON.parse(cookies.get('isDark'));
+    } catch (err) {
+        console.log(err);
+    }
 
     document.getElementsByTagName('body')[0].style.background = !isDark
         ? theme.white.primary

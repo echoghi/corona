@@ -3,9 +3,17 @@ import theme from '../lib/theme';
 
 const cookies = new Cookies();
 
+let darkMode = false;
+
+try {
+    darkMode = JSON.parse(cookies.get('isDark'));
+} catch (err) {
+    console.log(err);
+}
+
 export function appState(
     state = {
-        darkMode: JSON.parse(cookies.get('isDark')) || false,
+        darkMode,
         selectedCountry: {
             iso3: 'USA',
             lat: 38,
