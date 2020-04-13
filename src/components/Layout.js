@@ -27,10 +27,11 @@ export const Wrapper = styled.div`
 `;
 
 const mapStateToProps = state => ({
-    darkMode: state.darkMode
+    darkMode: state.darkMode,
+    modalData: state.modalData
 });
 
-const Layout = ({ children, pageName, darkMode }) => {
+const Layout = ({ children, pageName, darkMode, modalData }) => {
     let className = '';
 
     if (pageName) {
@@ -45,7 +46,7 @@ const Layout = ({ children, pageName, darkMode }) => {
             <Wrapper darkMode={darkMode}>
                 <Header />
                 <main>{children}</main>
-                <Footer darkMode={darkMode} />
+                <Footer darkMode={darkMode} lastUpdated={modalData.updatedFormatted} />
             </Wrapper>
         </>
     );
