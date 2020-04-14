@@ -46,7 +46,9 @@ export const Result = styled.li`
 
     &:hover {
         background: #dfdbf0;
+        color: #1a1053;
         cursor: pointer;
+        font-weight: bold;
     }
 `;
 

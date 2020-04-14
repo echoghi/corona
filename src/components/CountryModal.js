@@ -6,6 +6,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { numberWithCommas } from '../lib/util';
 import theme from '../lib/theme';
+import Grow from '@material-ui/core/Grow';
 
 export const CloseIcon = styled(FontAwesomeIcon)`
     position: fixed;
@@ -23,7 +24,6 @@ export const CloseIcon = styled(FontAwesomeIcon)`
 `;
 
 const Contqiner = styled.div`
-    display: ${props => (props.active ? 'block' : 'none')};
     position: absolute;
     background: ${props => (!props.darkMode ? '#fff' : '#272727')};
     border-radius: 0.5rem;
@@ -46,7 +46,7 @@ const Contqiner = styled.div`
 
     @media (max-width: 767px) {
         position: fixed;
-        display: ${props => (props.active ? 'flex' : 'none')};
+        display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -112,26 +112,28 @@ const countryModal = ({
     const iconColor = !darkMode ? '#1a1053' : theme.white.primary;
 
     return (
-        <Contqiner active={modalActive} darkMode={darkMode}>
-            <CloseIcon color={iconColor} size="3x" icon={faTimes} onClick={closeCountryModal} />
-            <div>
-                <Header>{country}</Header>
+        <Grow in={modalActive} timeout={{ enter: 300, exit: 0 }}>
+            <Contqiner darkMode={darkMode}>
+                <CloseIcon color={iconColor} size="3x" icon={faTimes} onClick={closeCountryModal} />
+                <div>
+                    <Header>{country}</Header>
 
-                <List darkMode={darkMode}>
-                    <ListItem darkMode={darkMode}>
-                        <span>Confirmed:</span> {casesString}
-                    </ListItem>
-                    <ListItem darkMode={darkMode}>
-                        <span>Deaths:</span> {numberWithCommas(deaths)}
-                    </ListItem>
-                    <ListItem darkMode={darkMode}>
-                        <span>Recovered:</span> {numberWithCommas(recovered)}
-                    </ListItem>
-                </List>
+                    <List darkMode={darkMode}>
+                        <ListItem darkMode={darkMode}>
+                            <span>Confirmed:</span> {casesString}
+                        </ListItem>
+                        <ListItem darkMode={darkMode}>
+                            <span>Deaths:</span> {numberWithCommas(deaths)}
+                        </ListItem>
+                        <ListItem darkMode={darkMode}>
+                            <span>Recovered:</span> {numberWithCommas(recovered)}
+                        </ListItem>
+                    </List>
 
-                <span>Last Updated {updatedFormatted}</span>
-            </div>
-        </Contqiner>
+                    <span>Last Updated {updatedFormatted}</span>
+                </div>
+            </Contqiner>
+        </Grow>
     );
 };
 
