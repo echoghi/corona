@@ -6,11 +6,11 @@ const Container = styled.footer`
     color: ${props => (props.darkMode ? theme.white.primary : theme.dark.primary)};
 `;
 
-const Footer = ({ darkMode, lastUpdated = '' }) => {
+const Footer = ({ darkMode }) => {
     return (
         <Container darkMode={darkMode}>
             <div>
-                <p>Last Updated: {lastUpdated}</p>
+                <p>&copy; {new Date().getFullYear()}, Emile Choghi</p>
             </div>
         </Container>
     );
