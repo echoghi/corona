@@ -86,6 +86,13 @@ export const SearchIcon = styled(FontAwesomeIcon)`
     left: 15px;
 `;
 
+export const CloseIcon = styled(FontAwesomeIcon)`
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    cursor: pointer;
+`;
+
 export const InputContainer = styled.div`
     display: inline-block;
     position: relative;

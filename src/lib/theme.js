@@ -1,6 +1,7 @@
 const theme = {
     dark: {
-        primary: '#272727'
+        primary: '#121212',
+        secondary: '#272727'
     },
     white: {
         primary: '#fff'

@@ -7,13 +7,14 @@ import {
     InputContainer,
     Input,
     SearchIcon,
+    CloseIcon,
     Flag,
     Results,
     Result
 } from './styles';
 import { connect } from 'react-redux';
 import { setCountry, getCountryChartData } from '../../data/actions';
-import { faSearchLocation } from '@fortawesome/free-solid-svg-icons';
+import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const mapStateToProps = state => ({
     selectedCountry: state.selectedCountry,
@@ -30,8 +31,10 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
     if (!countryData) return <p>Loading...</p>;
 
     function handleSelection(selection) {
-        getCountryChartData(selection.countryInfo.iso3);
-        setSelectedCountry(selection.countryInfo);
+        if (selection) {
+            //getCountryChartData(selection.countryInfo.iso3);
+            setSelectedCountry(selection.countryInfo);
+        }
     }
 
     return (
@@ -50,13 +53,22 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
                     inputValue,
                     highlightedIndex,
                     selectedItem,
-                    getRootProps
+                    getRootProps,
+                    clearSelection
                 }) => (
                     <ResultsContainer>
                         {/* <label {...getLabelProps()}>Enter a Country</label> */}
                         <InputContainer {...getRootProps({}, { suppressRefError: true })}>
                             <SearchIcon icon={faSearchLocation} color="grey" size="lg" />
                             <Input {...getInputProps()} placeholder="Search a country" />
+                            {inputValue && (
+                                <CloseIcon
+                                    icon={faTimesCircle}
+                                    color="grey"
+                                    size="sm"
+                                    onClick={clearSelection}
+                                />
+                            )}
                         </InputContainer>
                         <Results {...getMenuProps()}>
                             {isOpen

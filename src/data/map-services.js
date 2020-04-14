@@ -11,6 +11,6 @@ export const mapServices = [
     {
         name: 'MapBox',
         attribution: '&copy; <a href="http://osm.org/copyright">MapBox</a> contributors',
-        url: `https://api.mapbox.com/styles/v1/echoghi/ck8qrlemn0hmo1io3zzr0wos1.html?fresh=true&title=view&access_token=${accessToken}`
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
     }
 ];

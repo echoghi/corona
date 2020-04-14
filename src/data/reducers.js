@@ -27,7 +27,10 @@ export function appState(
 ) {
     switch (action.type) {
         case 'SET_COUNTRY':
-            return { ...state, selectedCountry: action.data };
+            return {
+                ...state,
+                selectedCountry: action.data
+            };
         case 'SAVE_COUNTRY_DATA':
             return { ...state, countryData: action.data };
         case 'SAVE_COUNTRY_CHART_DATA':

@@ -160,7 +160,7 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
 
     const mapSettings = {
         center: CENTER,
-        defaultBaseMap: 'OpenStreetMap',
+        defaultBaseMap: darkMode ? 'MapBox' : 'OpenStreetMap',
         zoom: DEFAULT_ZOOM,
         mapEffect
     };

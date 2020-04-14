@@ -25,12 +25,12 @@ export const CloseIcon = styled(FontAwesomeIcon)`
 
 const Contqiner = styled.div`
     position: absolute;
-    background: ${props => (!props.darkMode ? '#fff' : '#272727')};
+    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.secondary)};
     border-radius: 0.5rem;
     z-index: 999999;
     text-align: left;
     box-sizing: border-box;
-    color: ${props => (props.darkMode ? '#fff' : '#1a1053')};
+    color: ${props => (props.darkMode ? theme.white.primary : '#1a1053')};
     font-size: 0.7rem;
     font-weight: bold;
     padding: 1rem;
@@ -48,6 +48,7 @@ const Contqiner = styled.div`
         position: fixed;
         display: flex;
         justify-content: center;
+        border-radius: 0;
         align-items: center;
         height: 100vh;
         width: 100vw;
