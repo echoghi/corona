@@ -16,8 +16,8 @@ export function appState(
         darkMode,
         selectedCountry: {
             iso3: 'USA',
-            lat: 38,
-            long: -97
+            lat: 0,
+            long: 0
         },
         countryChartData: [],
         countryModal: false,

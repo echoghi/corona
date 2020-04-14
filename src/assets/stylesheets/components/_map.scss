@@ -7,6 +7,8 @@
         height: 100%;
         border-radius: 1rem;
         grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
         background: $blue-grey-50;
 
         @media (max-width: 767px) {

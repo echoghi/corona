@@ -46,7 +46,7 @@ const LOCATION = {
     lng: 0
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 4;
+const DEFAULT_ZOOM = 2;
 
 const mapStateToProps = state => ({
     darkMode: state.darkMode
@@ -176,7 +176,7 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
             <MapContainer darkMode={darkMode}>
                 <CountrySearch />
                 <Map {...mapSettings} />
-                <CountryChart />
+                {/* <CountryChart /> */}
                 <CountryModal />
             </MapContainer>
         </Layout>
