@@ -65,12 +65,13 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
 
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/countries');
 
-    if (loading || !stats) return <LoadingSpinner fullPage />;
+    // if (loading || !stats) return <LoadingSpinner fullPage />;
     if (error) return <ErrorMessage />;
 
-    saveCountryData(stats);
-    getCountryChartData();
-
+    if (!loading && stats) {
+        saveCountryData(stats);
+        // getCountryChartData();
+    }
     /**
      * mapEffect
      * @description Fires a callback once the page renders
@@ -123,22 +124,6 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
                     updatedFormatted,
                     ...properties
                 };
-
-                // const html = `
-                //   <div class="tooltip">
-                //       <h2>${country}</h2>
-
-                //       <ul>
-                //         <li><span class="category">Confirmed:</span> ${casesString}</li>
-                //         <li><span class="category">Deaths:</span> ${numberWithCommas(deaths)}</li>
-                //         <li><span class="category">Recovered:</span> ${numberWithCommas(
-                //             recovered
-                //         )}</li>
-                //         </ul>
-
-                //         <span>Last Updated ${updatedFormatted}</span>
-                //   </div>
-                // `;
 
                 const min = 1;
                 const factor = 5;

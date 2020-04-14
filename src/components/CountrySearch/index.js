@@ -28,7 +28,7 @@ const mapDispatchToProps = {
 };
 
 function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, darkMode }) {
-    if (!countryData) return <p>Loading...</p>;
+    if (!countryData) return <p></p>;
 
     function handleSelection(selection) {
         if (selection) {

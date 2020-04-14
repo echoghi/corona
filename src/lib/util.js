@@ -23,7 +23,7 @@ export function getPercentageChange(oldNumber, newNumber) {
     const decreaseValue = newNumber - oldNumber;
     const percentChange = (decreaseValue / oldNumber) * 100;
 
-    return percentChange.toFixed(2);
+    return parseInt(percentChange.toFixed(2));
 }
 
 export function setTheme() {

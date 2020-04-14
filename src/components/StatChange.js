@@ -22,10 +22,16 @@ const mapStateToProps = state => ({
 });
 
 function StatChange({ current, old, upColor, downColor, darkMode }) {
-    const percentChange = getPercentageChange(old, current);
+    let percentChange;
+
+    if (!old && !current) {
+        percentChange = '---';
+    } else {
+        percentChange = getPercentageChange(old, current);
+    }
 
     function ChangeIcon() {
-        if (!percentChange) return null;
+        if (!percentChange || typeof percentChange === 'string') return null;
 
         if (percentChange > 0) {
             return <FontAwesomeIcon icon={faCaretUp} color={upColor} size="lg" />;
