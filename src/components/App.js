@@ -21,7 +21,6 @@ import { setTheme } from '../lib/util';
 
 const MapContainer = styled.div`
     position: relative;
-    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
     border-radius: 1rem;
     padding: 2rem;
     box-shadow: ${props => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
@@ -32,7 +31,7 @@ const MapContainer = styled.div`
     grid-gap: 2rem;
     max-height: 60vh;
     min-height: 60vh;
-    transition: ${theme.transitions.darkMode};
+    transition: 0.2s all ease;
 
     @media (max-width: 767px) {
         display: block;
@@ -150,6 +149,8 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
         mapEffect
     };
 
+    const spinnerCSS = { position: 'absolute', top: 0, right: 0, left: 0, bottom: 0 };
+
     return (
         <Layout pageName="home">
             <Helmet>
@@ -159,10 +160,16 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
             <Stats url="https://corona.lmao.ninja/all" />
 
             <MapContainer darkMode={darkMode}>
-                <CountrySearch />
-                <Map {...mapSettings} />
-                {/* <CountryChart /> */}
-                <CountryModal />
+                {!loading ? (
+                    <>
+                        <CountrySearch />
+                        <Map {...mapSettings} />
+
+                        <CountryModal />
+                    </>
+                ) : (
+                    <LoadingSpinner style={spinnerCSS} />
+                )}
             </MapContainer>
         </Layout>
     );

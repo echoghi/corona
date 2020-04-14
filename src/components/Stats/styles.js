@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import theme from '../../lib/theme';
 
 export const StatBlock = styled.div`
-    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
     font-size: 2rem;
     padding: 2rem 3rem;
     border-radius: 1rem;
@@ -11,7 +10,7 @@ export const StatBlock = styled.div`
     justify-items: center;
     text-align: center;
     box-shadow: ${props => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
-    transition: ${theme.transitions.darkMode};
+    transition: box-shadow 0.2s ease;
 
     h4 {
         margin: 0.5rem 1rem;

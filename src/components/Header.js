@@ -7,6 +7,7 @@ import theme from '../lib/theme';
 
 const Heading = styled.h1`
     color: ${props => (!props.darkMode ? '#6135fc' : theme.white.primary)};
+    transition: color 0.2s ease;
 
     font-size: 35px;
     margin: 2rem 0;
@@ -27,9 +28,6 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.header`
-    transition: ${theme.transitions.darkMode};
-    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
-
     @media (max-width: 767px) {
         position: fixed;
         top: 0;

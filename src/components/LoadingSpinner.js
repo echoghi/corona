@@ -30,9 +30,9 @@ const Spinner = styled(FontAwesomeIcon)`
     animation: ${rotate} 2s linear infinite;
 `;
 
-export default function LoadingSpinner({ fullPage }) {
+export default function LoadingSpinner({ fullPage, ...props }) {
     return (
-        <Container fullPage={fullPage}>
+        <Container fullPage={fullPage} {...props}>
             <Spinner icon={faVirus} color="#6dd428" size="5x" />
         </Container>
     );
