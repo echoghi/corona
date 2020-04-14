@@ -60,7 +60,11 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
                         {/* <label {...getLabelProps()}>Enter a Country</label> */}
                         <InputContainer {...getRootProps({}, { suppressRefError: true })}>
                             <SearchIcon icon={faSearchLocation} color="grey" size="lg" />
-                            <Input {...getInputProps()} placeholder="Search a country" />
+                            <Input
+                                {...getInputProps()}
+                                placeholder="Search a country"
+                                darkMode={darkMode}
+                            />
                             {inputValue && (
                                 <CloseIcon
                                     icon={faTimesCircle}

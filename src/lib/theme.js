@@ -6,6 +6,9 @@ const theme = {
     white: {
         primary: '#fff'
     },
+    colors: {
+        purpleDark: '#1a1053'
+    },
     transitions: {
         darkMode: 'background-color 0.2s linear'
     }

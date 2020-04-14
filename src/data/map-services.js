@@ -1,7 +1,3 @@
-const accessToken =
-    process.env.GATSBY_MAPBOX_KEY ||
-    'pk.eyJ1IjoiZWNob2doaSIsImEiOiJjaXRodDE4Y2EwMnVuMnlvM2pkOGJ2ajdwIn0.6GIq33H8rzBpQc_Sw6AHKg';
-
 export const mapServices = [
     {
         name: 'OpenStreetMap',

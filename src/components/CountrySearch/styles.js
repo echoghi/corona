@@ -63,8 +63,9 @@ export const Container = styled.div`
 
 export const Input = styled.input`
     border-radius: 3rem;
-    background: #f0f3f7;
-    color: #1a1053;
+    background: ${props => (!props.darkMode ? '#f0f3f7' : theme.dark.secondary)};
+    transition: ${theme.transitions.darkMode};
+    color: ${props => (!props.darkMode ? theme.colors.purpleDark : theme.white.primary)};
     outline: none;
     padding: 1rem;
     padding-left: 3rem;
