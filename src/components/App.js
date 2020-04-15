@@ -125,7 +125,7 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
                 };
 
                 const min = 1;
-                const factor = 5;
+                const factor = 10;
                 const zoomFactor = DEFAULT_ZOOM >= 5 ? 1 : DEFAULT_ZOOM / 10; // adjust divisor for best optics
 
                 return L.circleMarker(latlng, {
