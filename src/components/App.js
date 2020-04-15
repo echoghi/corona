@@ -48,7 +48,8 @@ const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 2;
 
 const mapStateToProps = state => ({
-    darkMode: state.darkMode
+    darkMode: state.darkMode,
+    selectedCountry: state.selectedCountry
 });
 
 const mapDispatchToProps = {
@@ -57,7 +58,13 @@ const mapDispatchToProps = {
     toggleCountryModal: options => toggleCountryModal(options)
 };
 
-const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModal }) => {
+const App = ({
+    darkMode,
+    getCountryChartData,
+    selectedCountry,
+    saveCountryData,
+    toggleCountryModal
+}) => {
     useEffect(() => {
         setTheme();
     }, []);
@@ -145,7 +152,7 @@ const App = ({ darkMode, getCountryChartData, saveCountryData, toggleCountryModa
     const mapSettings = {
         center: CENTER,
         defaultBaseMap: darkMode ? 'MapBox' : 'OpenStreetMap',
-        zoom: DEFAULT_ZOOM,
+        zoom: selectedCountry ? 5 : DEFAULT_ZOOM,
         mapEffect
     };
 
