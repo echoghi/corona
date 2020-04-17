@@ -1,20 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import useStats from '../../hooks/useStats';
-import { numberWithCommas } from '../../lib/util';
 
 import { StatBlock, Confirmed, Recovered, Deaths, StatGrid } from './styles';
 import StatChange from '../StatChange';
-import CountUp, { useCountUp } from 'react-countup';
+import CountUp from 'react-countup';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     selectedCountry: state.selectedCountry,
-    darkMode: state.darkMode
+    darkMode: state.darkMode,
 });
 
 function Stats({ url, darkMode }) {
     const { stats, loading, error } = useStats(url);
-    const yesterdayData = useStats('https://corona.lmao.ninja/yesterday/all');
+    const yesterdayData = useStats('https://corona.lmao.ninja/v2/all?yesterday=true');
 
     if (error) return <p>Error: {error.message}</p>;
 

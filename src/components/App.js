@@ -23,7 +23,7 @@ const MapContainer = styled.div`
     position: relative;
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: ${props => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
+    box-shadow: ${(props) => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
     grid-column-start: 2;
     display: grid;
     grid-auto-columns: 200px 1fr;
@@ -42,20 +42,20 @@ const MapContainer = styled.div`
 
 const LOCATION = {
     lat: 0,
-    lng: 0
+    lng: 0,
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 2;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     darkMode: state.darkMode,
-    selectedCountry: state.selectedCountry
+    selectedCountry: state.selectedCountry,
 });
 
 const mapDispatchToProps = {
-    saveCountryData: country => saveCountryData(country),
+    saveCountryData: (country) => saveCountryData(country),
     getCountryChartData: () => getCountryChartData(),
-    toggleCountryModal: options => toggleCountryModal(options)
+    toggleCountryModal: (options) => toggleCountryModal(options),
 };
 
 const App = ({
@@ -63,13 +63,13 @@ const App = ({
     getCountryChartData,
     selectedCountry,
     saveCountryData,
-    toggleCountryModal
+    toggleCountryModal,
 }) => {
     useEffect(() => {
         setTheme();
     }, []);
 
-    const { stats, loading, error } = useStats('https://corona.lmao.ninja/countries');
+    const { stats, loading, error } = useStats('https://corona.lmao.ninja/v2/countries');
 
     // if (loading || !stats) return <LoadingSpinner fullPage />;
     if (error) return <ErrorMessage />;
@@ -97,14 +97,14 @@ const App = ({
                 return {
                     type: 'Feature',
                     properties: {
-                        ...country
+                        ...country,
                     },
                     geometry: {
                         type: 'Point',
-                        coordinates: [lng, lat]
-                    }
+                        coordinates: [lng, lat],
+                    },
                 };
-            })
+            }),
         };
 
         const geoJsonLayers = new L.GeoJSON(geoJson, {
@@ -128,7 +128,7 @@ const App = ({
                 const options = {
                     casesString,
                     updatedFormatted,
-                    ...properties
+                    ...properties,
                 };
 
                 const min = 1;
@@ -139,11 +139,11 @@ const App = ({
                     className: 'icon',
                     color: darkMode ? 'rgb(255, 0, 0)' : 'rgb(51, 136, 255)',
                     radius: Math.floor(Math.log(cases) * factor * zoomFactor) + min,
-                    stroke: false
+                    stroke: false,
                 }).on('click', function (e) {
                     toggleCountryModal(options);
                 });
-            }
+            },
         });
 
         geoJsonLayers.addTo(map);
@@ -153,7 +153,7 @@ const App = ({
         center: CENTER,
         defaultBaseMap: darkMode ? 'MapBox' : 'OpenStreetMap',
         zoom: selectedCountry ? 5 : DEFAULT_ZOOM,
-        mapEffect
+        mapEffect,
     };
 
     const spinnerCSS = { position: 'absolute', top: 0, right: 0, left: 0, bottom: 0 };
@@ -164,7 +164,7 @@ const App = ({
                 <title>Covid-19 - Global Trend</title>
             </Helmet>
 
-            <Stats url="https://corona.lmao.ninja/all" />
+            <Stats url="https://corona.lmao.ninja/v2/all" />
 
             <MapContainer darkMode={darkMode}>
                 {!loading ? (
