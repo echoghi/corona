@@ -17,11 +17,11 @@ export function appState(
         selectedCountry: {
             iso3: 'USA',
             lat: 0,
-            long: 0
+            long: 0,
         },
         countryChartData: [],
         countryModal: false,
-        modalData: {}
+        modalData: {},
     },
     action
 ) {
@@ -29,7 +29,7 @@ export function appState(
         case 'SET_COUNTRY':
             return {
                 ...state,
-                selectedCountry: action.data
+                selectedCountry: action.data,
             };
         case 'SAVE_COUNTRY_DATA':
             return { ...state, countryData: action.data };
@@ -47,10 +47,6 @@ export function appState(
             return { ...state, countryModal: false, modalData: {} };
         case 'TOGGLE_DARK_MODE':
             cookies.set('isDark', !state.darkMode, { path: '/' });
-
-            document.getElementsByTagName('html')[0].style.background = !state.darkMode
-                ? theme.dark.primary
-                : theme.white.primary;
             return { ...state, darkMode: !state.darkMode };
         default:
             return state;

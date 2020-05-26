@@ -1,5 +1,6 @@
 import Cookies from 'universal-cookie';
 import theme from '../lib/theme';
+import { useLayoutEffect } from 'react';
 
 const cookies = new Cookies();
 
@@ -24,18 +25,4 @@ export function getPercentageChange(oldNumber, newNumber) {
     const percentChange = (decreaseValue / oldNumber) * 100;
 
     return parseInt(percentChange.toFixed(2));
-}
-
-export function setTheme() {
-    let isDark = false;
-
-    try {
-        isDark = JSON.parse(cookies.get('isDark'));
-    } catch (err) {
-        console.log(err);
-    }
-
-    document.getElementsByTagName('html')[0].style.background = !isDark
-        ? theme.white.primary
-        : theme.dark.primary;
 }

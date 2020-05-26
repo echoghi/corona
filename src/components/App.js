@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-import React, { useEffect } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import L from 'leaflet';
@@ -17,7 +17,10 @@ import CountryModal from 'components/CountryModal';
 
 import useStats from '../hooks/useStats';
 import theme from '../lib/theme';
-import { setTheme } from '../lib/util';
+import useTheme from '../hooks/useTheme';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const MapContainer = styled.div`
     position: relative;
@@ -65,9 +68,15 @@ const App = ({
     saveCountryData,
     toggleCountryModal,
 }) => {
-    useEffect(() => {
-        setTheme();
-    }, []);
+    let isDark = false;
+
+    try {
+        isDark = JSON.parse(cookies.get('isDark'));
+    } catch (err) {
+        console.log(err);
+    }
+
+    useTheme(theme, isDark);
 
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/v2/countries');
 
