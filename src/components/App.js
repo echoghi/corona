@@ -13,8 +13,6 @@ import CountrySearch from 'components/CountrySearch';
 import CountryModal from 'components/CountryModal';
 
 import useStats from '../hooks/useStats';
-import theme from '../lib/theme';
-import useTheme from '../hooks/useTheme';
 import { useDarkMode, useCountry } from '../context';
 
 const MapContainer = styled.div`
@@ -51,16 +49,12 @@ const App = () => {
         setCountryData,
         setCountryModal,
         countryModal,
-        modalData,
         setModalData,
     } = useCountry();
     const { darkMode } = useDarkMode();
 
-    useTheme(theme, darkMode);
-
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/v2/countries');
 
-    // if (loading || !stats) return <LoadingSpinner fullPage />;
     if (error) return <ErrorMessage />;
 
     if (!loading && stats) {
