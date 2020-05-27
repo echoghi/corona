@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import { createStore } from './src/data/store';
+import { DarkModeProvider } from './src/context';
 
 // eslint-disable-next-line react/display-name,react/prop-types
 export default ({ element }) => {
@@ -10,5 +11,9 @@ export default ({ element }) => {
     //  - it will be called only once in browser, when React mounts
     const store = createStore();
 
-    return <Provider store={store}>{element}</Provider>;
+    return (
+        <Provider store={store}>
+            <DarkModeProvider>{element}</DarkModeProvider>
+        </Provider>
+    );
 };

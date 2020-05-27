@@ -10,24 +10,25 @@ import {
     CloseIcon,
     Flag,
     Results,
-    Result
+    Result,
 } from './styles';
 import { connect } from 'react-redux';
 import { setCountry, getCountryChartData } from '../../data/actions';
 import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { useDarkMode } from '../../context';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     selectedCountry: state.selectedCountry,
     countryData: state.countryData,
-    darkMode: state.darkMode
 });
 
 const mapDispatchToProps = {
-    setSelectedCountry: country => setCountry(country),
-    getCountryChartData: country => getCountryChartData(country)
+    setSelectedCountry: (country) => setCountry(country),
+    getCountryChartData: (country) => getCountryChartData(country),
 };
 
-function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, darkMode }) {
+function CountrySearch({ countryData, setSelectedCountry }) {
+    const { darkMode } = useDarkMode();
     if (!countryData) return <p></p>;
 
     function handleSelection(selection) {
@@ -42,7 +43,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
             <Downshift
                 defaultIsOpen
                 onChange={handleSelection}
-                itemToString={item => (item ? item.country : '')}
+                itemToString={(item) => (item ? item.country : '')}
             >
                 {({
                     getInputProps,
@@ -54,7 +55,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
                     highlightedIndex,
                     selectedItem,
                     getRootProps,
-                    clearSelection
+                    clearSelection,
                 }) => (
                     <ResultsContainer>
                         {/* <label {...getLabelProps()}>Enter a Country</label> */}
@@ -78,7 +79,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
                             {isOpen
                                 ? countryData
                                       .filter(
-                                          item =>
+                                          (item) =>
                                               !inputValue ||
                                               item.country
                                                   .toLowerCase()
@@ -90,7 +91,7 @@ function CountrySearch({ countryData, setSelectedCountry, getCountryChartData, d
                                               {...getItemProps({
                                                   key: item.country,
                                                   index,
-                                                  item
+                                                  item,
                                               })}
                                           >
                                               <Flag

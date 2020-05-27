@@ -1,19 +1,5 @@
-import Cookies from 'universal-cookie';
-import theme from '../lib/theme';
-
-const cookies = new Cookies();
-
-let darkMode = false;
-
-try {
-    darkMode = JSON.parse(cookies.get('isDark'));
-} catch (err) {
-    console.log(err);
-}
-
 export function appState(
     state = {
-        darkMode,
         selectedCountry: {
             iso3: 'USA',
             lat: 0,
@@ -45,9 +31,6 @@ export function appState(
             return { ...state, countryModal, modalData: action.data };
         case 'CLOSE_MODAL':
             return { ...state, countryModal: false, modalData: {} };
-        case 'TOGGLE_DARK_MODE':
-            cookies.set('isDark', !state.darkMode, { path: '/' });
-            return { ...state, darkMode: !state.darkMode };
         default:
             return state;
     }

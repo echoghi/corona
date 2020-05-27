@@ -1,9 +1,3 @@
-import Cookies from 'universal-cookie';
-import theme from '../lib/theme';
-import { useLayoutEffect } from 'react';
-
-const cookies = new Cookies();
-
 /**
  * isDomAvailable
  * @description Checks to see if the DOM is available by checking the existence of the window and document

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import DarkMode from './DarkMode';
 import theme from '../lib/theme';
+import { useDarkMode } from '../context';
 
 const Heading = styled.h1`
-    color: ${props => (!props.darkMode ? '#6135fc' : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? '#6135fc' : theme.white.primary)};
 
     font-size: 35px;
     margin: 2rem 0;
@@ -28,7 +27,7 @@ const Container = styled.div`
 
 const Wrapper = styled.header`
     transition: ${theme.transitions.darkMode};
-    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
+    background: ${(props) => (!props.darkMode ? theme.white.primary : theme.dark.primary)};
     z-index: 9999;
 
     @media (max-width: 767px) {
@@ -40,11 +39,9 @@ const Wrapper = styled.header`
     }
 `;
 
-const mapStateToProps = state => ({
-    darkMode: state.darkMode
-});
+const Header = () => {
+    const { darkMode } = useDarkMode();
 
-const Header = ({ darkMode }) => {
     return (
         <Wrapper darkMode={darkMode}>
             <Container>
@@ -65,4 +62,4 @@ const Header = ({ darkMode }) => {
     );
 };
 
-export default connect(mapStateToProps)(Header);
+export default Header;

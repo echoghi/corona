@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../lib/theme';
+import { useDarkMode } from '../context';
 
 const Container = styled.footer`
-    color: ${props => (props.darkMode ? theme.white.primary : theme.dark.primary)};
+    color: ${(props) => (props.darkMode ? theme.white.primary : theme.dark.primary)};
     width: 100%;
     margin: 2rem 0;
     height: 2em;
@@ -20,7 +21,9 @@ const Container = styled.footer`
     }
 `;
 
-const Footer = ({ darkMode }) => {
+const Footer = () => {
+    const { darkMode } = useDarkMode();
+
     return (
         <Container darkMode={darkMode}>
             <div>

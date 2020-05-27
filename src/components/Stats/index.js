@@ -5,13 +5,14 @@ import useStats from '../../hooks/useStats';
 import { StatBlock, Confirmed, Recovered, Deaths, StatGrid } from './styles';
 import StatChange from '../StatChange';
 import CountUp from 'react-countup';
+import { useDarkMode } from '../../context';
 
 const mapStateToProps = (state) => ({
     selectedCountry: state.selectedCountry,
-    darkMode: state.darkMode,
 });
 
-function Stats({ url, darkMode }) {
+function Stats({ url }) {
+    const { darkMode } = useDarkMode();
     const { stats, loading, error } = useStats(url);
     const yesterdayData = useStats('https://corona.lmao.ninja/v2/all?yesterday=true');
 

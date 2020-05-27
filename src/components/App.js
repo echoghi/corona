@@ -12,15 +12,12 @@ import Stats from 'components/Stats';
 import ErrorMessage from 'components/ErrorMessage';
 import LoadingSpinner from 'components/LoadingSpinner';
 import CountrySearch from 'components/CountrySearch';
-import CountryChart from 'components/CountryChart';
 import CountryModal from 'components/CountryModal';
 
 import useStats from '../hooks/useStats';
 import theme from '../lib/theme';
 import useTheme from '../hooks/useTheme';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
+import { useDarkMode } from '../context';
 
 const MapContainer = styled.div`
     position: relative;
@@ -51,7 +48,6 @@ const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 2;
 
 const mapStateToProps = (state) => ({
-    darkMode: state.darkMode,
     selectedCountry: state.selectedCountry,
 });
 
@@ -61,22 +57,10 @@ const mapDispatchToProps = {
     toggleCountryModal: (options) => toggleCountryModal(options),
 };
 
-const App = ({
-    darkMode,
-    getCountryChartData,
-    selectedCountry,
-    saveCountryData,
-    toggleCountryModal,
-}) => {
-    let isDark = false;
+const App = ({ selectedCountry, saveCountryData, toggleCountryModal }) => {
+    const { darkMode } = useDarkMode();
 
-    try {
-        isDark = JSON.parse(cookies.get('isDark'));
-    } catch (err) {
-        console.log(err);
-    }
-
-    useTheme(theme, isDark);
+    useTheme(theme, darkMode);
 
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/v2/countries');
 

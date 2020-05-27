@@ -6,18 +6,18 @@ import { numberWithCommas } from '../../lib/util';
 import { Container, Header, CloseIcon, List, ListItem } from './styles';
 import theme from '../../lib/theme';
 import Grow from '@material-ui/core/Grow';
+import { useDarkMode } from '../../context';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     modalActive: state.countryModal,
-    darkMode: state.darkMode,
-    ...state.modalData
+    ...state.modalData,
 });
 
 const mapDispatchToProps = {
-    closeCountryModal: () => closeCountryModal()
+    closeCountryModal: () => closeCountryModal(),
 };
 
-const countryModal = ({
+const CountryModal = ({
     modalActive,
     country,
     casesString,
@@ -25,8 +25,8 @@ const countryModal = ({
     recovered,
     closeCountryModal,
     updatedFormatted,
-    darkMode
 }) => {
+    const { darkMode } = useDarkMode();
     const iconColor = !darkMode ? theme.colors.purpleDark : theme.white.primary;
 
     return (
@@ -55,4 +55,4 @@ const countryModal = ({
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(countryModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CountryModal);
