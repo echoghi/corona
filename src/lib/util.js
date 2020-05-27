@@ -18,5 +18,5 @@ export function getPercentageChange(oldNumber, newNumber) {
     const decreaseValue = newNumber - oldNumber;
     const percentChange = (decreaseValue / oldNumber) * 100;
 
-    return parseInt(percentChange.toFixed(2));
+    return parseFloat(percentChange.toFixed(2));
 }

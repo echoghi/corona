@@ -39,7 +39,7 @@ function StatChange({ current, old, upColor, downColor }) {
 
     return (
         <Difference darkMode={darkMode}>
-            <Percentage>{`${percentChange}%`}</Percentage>
+            <Percentage>{percentChange === 0 ? '---' : `${percentChange}%`}</Percentage>
             <ChangeIcon percent={percentChange} />
         </Difference>
     );
