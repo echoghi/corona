@@ -1,5 +1,6 @@
 import React from 'react';
 import Downshift from 'downshift';
+import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import {
     Container,
@@ -12,28 +13,15 @@ import {
     Results,
     Result,
 } from './styles';
-import { connect } from 'react-redux';
-import { setCountry, getCountryChartData } from '../../data/actions';
-import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { useDarkMode } from '../../context';
+import { useDarkMode, useCountry } from '../../context';
 
-const mapStateToProps = (state) => ({
-    selectedCountry: state.selectedCountry,
-    countryData: state.countryData,
-});
-
-const mapDispatchToProps = {
-    setSelectedCountry: (country) => setCountry(country),
-    getCountryChartData: (country) => getCountryChartData(country),
-};
-
-function CountrySearch({ countryData, setSelectedCountry }) {
+function CountrySearch() {
+    const { countryData, setSelectedCountry } = useCountry();
     const { darkMode } = useDarkMode();
     if (!countryData) return <p></p>;
 
     function handleSelection(selection) {
         if (selection) {
-            //getCountryChartData(selection.countryInfo.iso3);
             setSelectedCountry(selection.countryInfo);
         }
     }
@@ -110,4 +98,4 @@ function CountrySearch({ countryData, setSelectedCountry }) {
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountrySearch);
+export default CountrySearch;

@@ -1,44 +1,32 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { closeCountryModal } from '../../data/actions';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { numberWithCommas } from '../../lib/util';
 import { Container, Header, CloseIcon, List, ListItem } from './styles';
 import theme from '../../lib/theme';
 import Grow from '@material-ui/core/Grow';
-import { useDarkMode } from '../../context';
+import { useDarkMode, useCountry } from '../../context';
 
-const mapStateToProps = (state) => ({
-    modalActive: state.countryModal,
-    ...state.modalData,
-});
-
-const mapDispatchToProps = {
-    closeCountryModal: () => closeCountryModal(),
-};
-
-const CountryModal = ({
-    modalActive,
-    country,
-    casesString,
-    deaths,
-    recovered,
-    closeCountryModal,
-    updatedFormatted,
-}) => {
+const CountryModal = () => {
+    const { modalData, countryModal, setCountryModal } = useCountry();
     const { darkMode } = useDarkMode();
+    const { country, cases, casesString, deaths, recovered, updatedFormatted } = modalData;
     const iconColor = !darkMode ? theme.colors.purpleDark : theme.white.primary;
-
+    console.log(numberWithCommas(cases));
     return (
-        <Grow in={modalActive} timeout={{ enter: 300, exit: 0 }}>
+        <Grow in={countryModal} timeout={{ enter: 300, exit: 0 }}>
             <Container darkMode={darkMode}>
-                <CloseIcon color={iconColor} size="3x" icon={faTimes} onClick={closeCountryModal} />
+                <CloseIcon
+                    color={iconColor}
+                    size="3x"
+                    icon={faTimes}
+                    onClick={() => setCountryModal(false)}
+                />
                 <div>
                     <Header>{country}</Header>
 
                     <List darkMode={darkMode}>
                         <ListItem darkMode={darkMode}>
-                            <span>Confirmed:</span> {casesString}
+                            <span>Confirmed:</span> {numberWithCommas(cases)}
                         </ListItem>
                         <ListItem darkMode={darkMode}>
                             <span>Deaths:</span> {numberWithCommas(deaths)}
@@ -55,4 +43,4 @@ const CountryModal = ({
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountryModal);
+export default CountryModal;

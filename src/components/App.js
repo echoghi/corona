@@ -1,11 +1,9 @@
 /* eslint-disable import/first */
+import L from 'leaflet';
 import React from 'react';
 import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
-import L from 'leaflet';
-
-import { saveCountryData, getCountryChartData, toggleCountryModal } from '../data/actions';
 import styled from 'styled-components';
+
 import Layout from 'components/Layout';
 import Map from 'components/Map';
 import Stats from 'components/Stats';
@@ -17,7 +15,7 @@ import CountryModal from 'components/CountryModal';
 import useStats from '../hooks/useStats';
 import theme from '../lib/theme';
 import useTheme from '../hooks/useTheme';
-import { useDarkMode } from '../context';
+import { useDarkMode, useCountry } from '../context';
 
 const MapContainer = styled.div`
     position: relative;
@@ -47,17 +45,15 @@ const LOCATION = {
 const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 2;
 
-const mapStateToProps = (state) => ({
-    selectedCountry: state.selectedCountry,
-});
-
-const mapDispatchToProps = {
-    saveCountryData: (country) => saveCountryData(country),
-    getCountryChartData: () => getCountryChartData(),
-    toggleCountryModal: (options) => toggleCountryModal(options),
-};
-
-const App = ({ selectedCountry, saveCountryData, toggleCountryModal }) => {
+const App = () => {
+    const {
+        selectedCountry,
+        setCountryData,
+        setCountryModal,
+        countryModal,
+        modalData,
+        setModalData,
+    } = useCountry();
     const { darkMode } = useDarkMode();
 
     useTheme(theme, darkMode);
@@ -68,8 +64,7 @@ const App = ({ selectedCountry, saveCountryData, toggleCountryModal }) => {
     if (error) return <ErrorMessage />;
 
     if (!loading && stats) {
-        saveCountryData(stats);
-        // getCountryChartData();
+        setCountryData(stats);
     }
     /**
      * mapEffect
@@ -134,7 +129,8 @@ const App = ({ selectedCountry, saveCountryData, toggleCountryModal }) => {
                     radius: Math.floor(Math.log(cases) * factor * zoomFactor) + min,
                     stroke: false,
                 }).on('click', function (e) {
-                    toggleCountryModal(options);
+                    setCountryModal(!countryModal);
+                    setModalData(options);
                 });
             },
         });
@@ -175,4 +171,4 @@ const App = ({ selectedCountry, saveCountryData, toggleCountryModal }) => {
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

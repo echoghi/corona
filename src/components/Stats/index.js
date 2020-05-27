@@ -1,15 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import useStats from '../../hooks/useStats';
+import CountUp from 'react-countup';
 
+import useStats from '../../hooks/useStats';
 import { StatBlock, Confirmed, Recovered, Deaths, StatGrid } from './styles';
 import StatChange from '../StatChange';
-import CountUp from 'react-countup';
 import { useDarkMode } from '../../context';
-
-const mapStateToProps = (state) => ({
-    selectedCountry: state.selectedCountry,
-});
 
 function Stats({ url }) {
     const { darkMode } = useDarkMode();
@@ -76,4 +71,4 @@ function Stats({ url }) {
     );
 }
 
-export default connect(mapStateToProps)(Stats);
+export default Stats;
