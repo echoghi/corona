@@ -9,6 +9,5 @@
 -   [Resolve Src](https://github.com/alampros/gatsby-plugin-resolve-src)
 -   [Leaflet](https://leafletjs.com/)
 -   [React Leaflet](https://react-leaflet.js.org)
--   [Recharts](https://recharts.org/en-US)
 -   [NovelCOVID API](https://corona.lmao.ninja/docs/)
 -   [Font Awesome](https://github.com/FortAwesome/react-fontawesome)
