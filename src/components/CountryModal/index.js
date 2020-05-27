@@ -9,9 +9,9 @@ import { useDarkMode, useCountry } from '../../context';
 const CountryModal = () => {
     const { modalData, countryModal, setCountryModal } = useCountry();
     const { darkMode } = useDarkMode();
-    const { country, cases, casesString, deaths, recovered, updatedFormatted } = modalData;
+    const { country, cases, deaths, recovered, updatedFormatted } = modalData;
     const iconColor = !darkMode ? theme.colors.purpleDark : theme.white.primary;
-    console.log(numberWithCommas(cases));
+
     return (
         <Grow in={countryModal} timeout={{ enter: 300, exit: 0 }}>
             <Container darkMode={darkMode}>
