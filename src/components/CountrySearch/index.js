@@ -13,7 +13,7 @@ import {
     Results,
     Result,
 } from './styles';
-import { useDarkMode, useCountry } from '../../context';
+import { useDarkMode, useCountry } from '@context';
 
 function CountrySearch() {
     const { countryData, setSelectedCountry } = useCountry();
