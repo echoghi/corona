@@ -11,3 +11,5 @@
 -   [React Leaflet](https://react-leaflet.js.org)
 -   [NovelCOVID API](https://corona.lmao.ninja/docs/)
 -   [Font Awesome](https://github.com/FortAwesome/react-fontawesome)
+
+[![CircleCI](https://circleci.com/gh/echoghi/corona.svg?style=svg)](https://circleci.com/gh/echoghi/corona)
