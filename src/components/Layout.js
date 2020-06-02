@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import 'assets/stylesheets/application.scss';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import theme from '../lib/theme';
-import { useDarkMode } from '../context';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
+import theme from '@theme';
+import { useDarkMode } from '@context';
 
 export const Wrapper = styled.div`
     min-height: 100vh;

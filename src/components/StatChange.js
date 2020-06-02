@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getPercentageChange } from '../lib/util';
+import { getPercentageChange } from '@lib/util';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
-import theme from '../lib/theme';
-import { useDarkMode } from '../context';
+import theme from '@theme';
+import { useDarkMode } from '@context';
 
 const Difference = styled.span`
     font-size: 0.8rem;

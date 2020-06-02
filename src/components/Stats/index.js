@@ -1,10 +1,10 @@
 import React from 'react';
 import CountUp from 'react-countup';
 
-import useStats from '../../hooks/useStats';
+import useStats from '@hooks/useStats';
 import { StatBlock, Confirmed, Recovered, Deaths, StatGrid } from './styles';
-import StatChange from '../StatChange';
-import { useDarkMode } from '../../context';
+import StatChange from '@components/StatChange';
+import { useDarkMode } from '@context';
 
 function Stats({ url }) {
     const { darkMode } = useDarkMode();

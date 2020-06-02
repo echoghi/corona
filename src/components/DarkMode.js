@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import theme from '../lib/theme';
-import { useDarkMode } from '../context';
+import theme from '@theme';
+import { useDarkMode } from '@context';
 
 const Container = styled.div`
     grid-column-start: 2;
