@@ -21,7 +21,13 @@ const DarkMode = () => {
 
     return (
         <Container>
-            <Icon color={color} size="lg" icon={icon} onClick={() => setDarkMode(!darkMode)} />
+            <Icon
+                color={color}
+                size="lg"
+                icon={icon}
+                onClick={() => setDarkMode(!darkMode)}
+                data-testid="dark-mode-icon"
+            />
         </Container>
     );
 };

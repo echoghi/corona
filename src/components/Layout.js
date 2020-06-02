@@ -37,8 +37,11 @@ const Layout = ({ children, pageName }) => {
 
     return (
         <>
-            <Helmet bodyAttributes={{ class: className }} htmlAttributes={{ class: htmlClass }}>
-                <title>Gatsby Site</title>
+            <Helmet
+                bodyAttributes={{ class: className, 'data-testid': 'app-body' }}
+                htmlAttributes={{ class: htmlClass, 'data-testid': 'app-html' }}
+            >
+                <title>COVID-19 Tracker</title>
             </Helmet>
             <Wrapper darkMode={darkMode}>
                 <Header />

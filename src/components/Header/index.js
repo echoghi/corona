@@ -7,9 +7,9 @@ const Header = () => {
     const { darkMode } = useDarkMode();
 
     return (
-        <Wrapper darkMode={darkMode}>
+        <Wrapper darkMode={darkMode} data-testid="app-header">
             <Container>
-                <Heading darkMode={darkMode}>
+                <Heading darkMode={darkMode} data-testid="app-heading">
                     <span>Covid-19</span>
                 </Heading>
                 <DarkMode />
