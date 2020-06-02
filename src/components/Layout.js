@@ -28,6 +28,7 @@ export const Wrapper = styled.div`
 
 const Layout = ({ children, pageName }) => {
     const { darkMode } = useDarkMode();
+    const htmlClass = darkMode ? 'dark' : '';
     let className = '';
 
     if (pageName) {
@@ -36,7 +37,7 @@ const Layout = ({ children, pageName }) => {
 
     return (
         <>
-            <Helmet bodyAttributes={{ class: className }}>
+            <Helmet bodyAttributes={{ class: className }} htmlAttributes={{ class: htmlClass }}>
                 <title>Gatsby Site</title>
             </Helmet>
             <Wrapper darkMode={darkMode}>

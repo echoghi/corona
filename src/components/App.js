@@ -4,16 +4,16 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import Layout from 'components/Layout';
-import Map from 'components/Map';
-import Stats from 'components/Stats';
-import ErrorMessage from 'components/ErrorMessage';
-import LoadingSpinner from 'components/LoadingSpinner';
-import CountrySearch from 'components/CountrySearch';
-import CountryModal from 'components/CountryModal';
+import Layout from '@components/Layout';
+import Map from '@components/Map';
+import Stats from '@components/Stats';
+import ErrorMessage from '@components/ErrorMessage';
+import LoadingSpinner from '@components/LoadingSpinner';
+import CountrySearch from '@components/CountrySearch';
+import CountryModal from '@components/CountryModal';
 
-import useStats from '../hooks/useStats';
-import { useDarkMode, useCountry } from '../context';
+import { useStats } from '@hooks';
+import { useDarkMode, useCountry } from '@context';
 
 const MapContainer = styled.div`
     position: relative;
