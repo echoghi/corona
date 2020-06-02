@@ -14,9 +14,9 @@ function Stats({ url }) {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <StatGrid darkMode={darkMode}>
-            <StatBlock darkMode={darkMode}>
-                <Confirmed darkMode={darkMode}>
+        <StatGrid>
+            <StatBlock darkMode={darkMode} data-testid="app-stat-block">
+                <Confirmed darkMode={darkMode} data-testid="app-stat-cases">
                     {stats ? <CountUp separator="," end={stats.cases} /> : '0'}
                 </Confirmed>
                 <h4>Confirmed</h4>
@@ -28,7 +28,7 @@ function Stats({ url }) {
                 />
             </StatBlock>
             <StatBlock darkMode={darkMode}>
-                <Confirmed darkMode={darkMode}>
+                <Confirmed darkMode={darkMode} data-testid="app-stat-todayCases">
                     {' '}
                     {stats ? <CountUp separator="," end={stats.todayCases} /> : '0'}
                 </Confirmed>
@@ -41,7 +41,7 @@ function Stats({ url }) {
                 />
             </StatBlock>
             <StatBlock darkMode={darkMode}>
-                <Recovered darkMode={darkMode}>
+                <Recovered darkMode={darkMode} data-testid="app-stat-recovered">
                     {' '}
                     {stats ? <CountUp separator="," end={stats.recovered} /> : '0'}
                 </Recovered>
@@ -55,7 +55,7 @@ function Stats({ url }) {
                 />
             </StatBlock>
             <StatBlock darkMode={darkMode}>
-                <Deaths darkMode={darkMode}>
+                <Deaths darkMode={darkMode} data-testid="app-stat-deaths">
                     {stats ? <CountUp separator="," end={stats.deaths} /> : '0'}
                 </Deaths>
                 <h4>Deaths</h4>
