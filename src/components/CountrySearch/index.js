@@ -18,7 +18,6 @@ import { useDarkMode, useCountry } from '@context';
 function CountrySearch() {
     const { countryData, setSelectedCountry } = useCountry();
     const { darkMode } = useDarkMode();
-    if (!countryData) return <p></p>;
 
     function handleSelection(selection) {
         if (selection) {
@@ -36,7 +35,6 @@ function CountrySearch() {
                 {({
                     getInputProps,
                     getItemProps,
-                    getLabelProps,
                     getMenuProps,
                     isOpen,
                     inputValue,
@@ -46,13 +44,13 @@ function CountrySearch() {
                     clearSelection,
                 }) => (
                     <ResultsContainer>
-                        {/* <label {...getLabelProps()}>Enter a Country</label> */}
                         <InputContainer {...getRootProps({}, { suppressRefError: true })}>
                             <SearchIcon icon={faSearchLocation} color="grey" size="lg" />
                             <Input
                                 {...getInputProps()}
                                 placeholder="Search a country"
                                 darkMode={darkMode}
+                                data-testid="app-country-search"
                             />
                             {inputValue && (
                                 <CloseIcon
@@ -76,6 +74,7 @@ function CountrySearch() {
                                       .map((item, index) => (
                                           <Result
                                               darkMode={darkMode}
+                                              data-testid="app-country-list-item"
                                               {...getItemProps({
                                                   key: item.country,
                                                   index,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import theme from '../../lib/theme';
+import theme from '@theme';
 
 export const CloseIcon = styled(FontAwesomeIcon)`
     position: fixed;
@@ -19,12 +19,13 @@ export const CloseIcon = styled(FontAwesomeIcon)`
 
 export const Container = styled.div`
     position: absolute;
-    background: ${props => (!props.darkMode ? theme.white.primary : theme.dark.secondary)};
+    background: ${(props) => (!props.darkMode ? theme.white.primary : theme.dark.secondary)};
     border-radius: 0.5rem;
     z-index: 999999;
     text-align: left;
     box-sizing: border-box;
-    color: ${props => (props.darkMode ? theme.white.primary : theme.colors.purpleDark)};
+    color: ${(props) => (props.darkMode ? theme.white.primary : theme.colors.purpleDark)};
+    transition: ${theme.transitions.darkMode};
     font-size: 0.7rem;
     font-weight: bold;
     padding: 1rem;
@@ -66,7 +67,7 @@ export const Header = styled.h2`
 export const List = styled.ul`
     list-style: none;
     padding: 0;
-    color: ${props => (props.darkMode ? theme.white.primary : '#f9345e')};
+    color: ${(props) => (props.darkMode ? theme.white.primary : '#f9345e')};
 `;
 
 export const ListItem = styled.li`
@@ -74,7 +75,7 @@ export const ListItem = styled.li`
     padding: 2.5px 0;
 
     span {
-        color: ${props => (props.darkMode ? theme.white.primary : theme.colors.purpleDark)};
+        color: ${(props) => (props.darkMode ? theme.white.primary : theme.colors.purpleDark)};
     }
 
     @media (max-width: 767px) {

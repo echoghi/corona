@@ -14,8 +14,9 @@ const CountryModal = () => {
 
     return (
         <Grow in={countryModal} timeout={{ enter: 300, exit: 0 }}>
-            <Container darkMode={darkMode}>
+            <Container darkMode={darkMode} data-testid="map-modal">
                 <CloseIcon
+                    data-testid="map-modal-close"
                     color={iconColor}
                     size="3x"
                     icon={faTimes}
@@ -24,19 +25,19 @@ const CountryModal = () => {
                 <div>
                     <Header>{country}</Header>
 
-                    <List darkMode={darkMode}>
-                        <ListItem darkMode={darkMode}>
+                    <List darkMode={darkMode} data-testid="map-modal-list">
+                        <ListItem darkMode={darkMode} data-testid="map-modal-cases">
                             <span>Confirmed:</span> {numberWithCommas(cases)}
                         </ListItem>
-                        <ListItem darkMode={darkMode}>
+                        <ListItem darkMode={darkMode} data-testid="map-modal-deaths">
                             <span>Deaths:</span> {numberWithCommas(deaths)}
                         </ListItem>
-                        <ListItem darkMode={darkMode}>
+                        <ListItem darkMode={darkMode} data-testid="map-modal-recovered">
                             <span>Recovered:</span> {numberWithCommas(recovered)}
                         </ListItem>
                     </List>
 
-                    <span>Last Updated {updatedFormatted}</span>
+                    <span data-testid="map-modal-updated">Last Updated {updatedFormatted}</span>
                 </div>
             </Container>
         </Grow>

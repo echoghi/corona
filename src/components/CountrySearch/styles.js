@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import theme from '../../lib/theme';
+import theme from '@theme';
 
 export const Results = styled.ul`
     overflow-y: auto;
@@ -41,7 +40,7 @@ export const Result = styled.li`
     padding: 1rem;
     border-radius: 1rem;
     display: flex;
-    color: ${props => (!props.darkMode ? '#1a1053' : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? '#1a1053' : theme.white.primary)};
     align-items: center;
 
     &:hover {
@@ -63,9 +62,9 @@ export const Container = styled.div`
 
 export const Input = styled.input`
     border-radius: 3rem;
-    background: ${props => (!props.darkMode ? '#f0f3f7' : theme.dark.secondary)};
+    background: ${(props) => (!props.darkMode ? '#f0f3f7' : theme.dark.secondary)};
     transition: ${theme.transitions.darkMode};
-    color: ${props => (!props.darkMode ? theme.colors.purpleDark : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? theme.colors.purpleDark : theme.white.primary)};
     outline: none;
     padding: 1rem;
     padding-left: 3rem;

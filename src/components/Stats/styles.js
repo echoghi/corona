@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '../../lib/theme';
+import theme from '@theme';
 
 export const StatBlock = styled.div`
     font-size: 2rem;
@@ -9,13 +9,13 @@ export const StatBlock = styled.div`
     align-items: center;
     justify-items: center;
     text-align: center;
-    box-shadow: ${props => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
+    box-shadow: ${(props) => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
     transition: box-shadow 0.2s ease;
 
     h4 {
         margin: 0.5rem 1rem;
         font-size: 20px;
-        color: ${props => (!props.darkMode ? '#1a1053' : theme.white.primary)};
+        color: ${(props) => (!props.darkMode ? '#1a1053' : theme.white.primary)};
     }
 
     @media (max-width: 767px) {
@@ -38,17 +38,17 @@ export const StatBlock = styled.div`
 `;
 
 export const Confirmed = styled.span`
-    color: ${props => (!props.darkMode ? '#000' : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? '#000' : theme.white.primary)};
     font-weight: bold;
 `;
 
 export const Recovered = styled.span`
-    color: ${props => (!props.darkMode ? '#6dd428' : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? '#6dd428' : theme.white.primary)};
     font-weight: bold;
 `;
 
 export const Deaths = styled.span`
-    color: ${props => (!props.darkMode ? '#f9345e' : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? '#f9345e' : theme.white.primary)};
     font-weight: bold;
 `;
 

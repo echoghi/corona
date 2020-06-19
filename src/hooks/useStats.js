@@ -11,8 +11,8 @@ export default function useStats(url) {
             setError();
 
             const data = await fetch(url)
-                .then(res => res.json())
-                .catch(err => setError(err));
+                .then((res) => res.json())
+                .catch((err) => setError(err));
 
             if (!data.error) {
                 setStats(data);
