@@ -35,7 +35,7 @@ beforeEach(() => {
 });
 
 describe('darkMode', () => {
-    test('header', async () => {
+    test.skip('header', async () => {
         const { getByTestId } = render(<App />);
         const header = getByTestId('app-header');
         const heading = getByTestId('app-heading');
