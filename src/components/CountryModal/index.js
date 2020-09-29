@@ -1,10 +1,10 @@
-import React from 'react';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { numberWithCommas } from '@lib/util';
-import { Container, Header, CloseIcon, List, ListItem } from './styles';
-import theme from '@theme';
-import Grow from '@material-ui/core/Grow';
-import { useDarkMode, useCountry } from '@context';
+import React from "react";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { numberWithCommas } from "@lib/util";
+import { Container, Header, CloseIcon, List, ListItem } from "./styles";
+import theme from "@theme";
+import Grow from "@material-ui/core/Grow";
+import { useDarkMode, useCountry } from "@context";
 
 const CountryModal = () => {
     const { modalData, countryModal, setCountryModal } = useCountry();

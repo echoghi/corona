@@ -23,8 +23,8 @@ export const StatBlock = styled.div`
     @media (max-width: 767px) {
         height: auto;
         width: auto;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         background: transparent;
         box-shadow: none;
         margin: 0;
@@ -65,7 +65,7 @@ export const StatGrid = styled.div`
 
     @media (max-width: 767px) {
         display: block;
-        margin-top: 5rem;
+        margin-top: 4rem;
         padding: 0;
     }
 `;
