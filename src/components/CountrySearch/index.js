@@ -16,7 +16,7 @@ import {
 import { useDarkMode, useCountry } from "@context";
 
 function CountrySearch() {
-    const { countryData, setSelectedCountry } = useCountry();
+    const { countryData, setSelectedCountry, setCountryModal } = useCountry();
     const { darkMode } = useDarkMode();
 
     function handleSelection(selection) {
@@ -59,6 +59,7 @@ function CountrySearch() {
                                             lat: 0,
                                             long: 0,
                                         });
+                                        setCountryModal(false);
                                         clearSelection();
                                     }}
                                 />
