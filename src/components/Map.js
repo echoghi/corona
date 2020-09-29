@@ -77,7 +77,7 @@ const Map = ({ children, className, defaultBaseMap = "OpenStreetMap", zoom }) =>
                     radius: Math.floor(Math.log(cases) * factor * zoomFactor) + min,
                     stroke: false,
                 }).on("click", function (e) {
-                    setCountryModal(!countryModal);
+                    setCountryModal(true);
                     setModalData(options);
                 });
             },

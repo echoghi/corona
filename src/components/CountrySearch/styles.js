@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import theme from '@theme';
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import theme from "@theme";
+import SuspenseImg from "@components/SuspenseImg";
 
 export const Results = styled.ul`
     overflow-y: auto;
@@ -40,11 +41,11 @@ export const Result = styled.li`
     padding: 1rem;
     border-radius: 1rem;
     display: flex;
-    color: ${(props) => (!props.darkMode ? '#1a1053' : theme.white.primary)};
+    color: ${(props) => (!props.darkMode ? "#1a1053" : theme.white.primary)};
     align-items: center;
 
     &:hover {
-        background: #dfdbf0;
+        background: ${(props) => (props.darkMode ? theme.white.primary : "#dfdbf0")};
         color: #1a1053;
         cursor: pointer;
     }
@@ -62,7 +63,7 @@ export const Container = styled.div`
 
 export const Input = styled.input`
     border-radius: 3rem;
-    background: ${(props) => (!props.darkMode ? '#f0f3f7' : theme.dark.secondary)};
+    background: ${(props) => (!props.darkMode ? "#f0f3f7" : theme.dark.secondary)};
     transition: ${theme.transitions.darkMode};
     color: ${(props) => (!props.darkMode ? theme.colors.purpleDark : theme.white.primary)};
     outline: none;
@@ -74,7 +75,7 @@ export const Input = styled.input`
     width: 100%;
 `;
 
-export const Flag = styled.img`
+export const Flag = styled(SuspenseImg)`
     height: 15px;
     width: 20px;
     margin-right: 10px;
