@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import theme from "@theme";
-import SuspenseImg from "@components/SuspenseImg";
 
 export const Results = styled.ul`
     overflow-y: auto;
@@ -75,7 +74,7 @@ export const Input = styled.input`
     width: 100%;
 `;
 
-export const Flag = styled(SuspenseImg)`
+export const Flag = styled.img`
     height: 15px;
     width: 20px;
     margin-right: 10px;

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
 
@@ -8,11 +8,10 @@ import Stats from "@components/Stats";
 import CountrySearch from "@components/CountrySearch";
 import LoadingSpinner from "@components/LoadingSpinner";
 import CountryModal from "@components/CountryModal";
+import ErrorMessage from "@components/ErrorMessage";
 
 import { useStats } from "@hooks";
 import { useDarkMode, useCountry } from "@context";
-
-const ErrorMessage = lazy(() => import("@components/ErrorMessage"));
 
 const MapContainer = styled.div`
     position: relative;
@@ -36,7 +35,6 @@ const MapContainer = styled.div`
 `;
 
 const App = () => {
-    const isSSR = typeof window === "undefined";
     const { selectedCountry, setCountryData } = useCountry();
     const { darkMode } = useDarkMode();
     const defaultState = selectedCountry.lat === 0 && selectedCountry.long === 0;
@@ -65,15 +63,15 @@ const App = () => {
             <Stats url="https://corona.lmao.ninja/v2/all" />
 
             <MapContainer darkMode={darkMode}>
-                {!isSSR && (
-                    <Suspense fallback={<LoadingSpinner style={spinnerCSS} />}>
-                        <>
-                            <CountrySearch />
-                            <Map zoom={zoom} defaultBaseMap={defaultBaseMap} />
+                {!loading ? (
+                    <>
+                        <CountrySearch />
+                        <Map zoom={zoom} defaultBaseMap={defaultBaseMap} />
 
-                            <CountryModal />
-                        </>
-                    </Suspense>
+                        <CountryModal />
+                    </>
+                ) : (
+                    <LoadingSpinner style={spinnerCSS} />
                 )}
             </MapContainer>
         </Layout>
