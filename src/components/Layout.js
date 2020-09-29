@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import styled from 'styled-components';
+import React from "react";
+import Helmet from "react-helmet";
+import styled from "styled-components";
 
-import 'assets/stylesheets/application.scss';
+import "assets/stylesheets/application.scss";
 
-import Header from '@components/Header';
-import Footer from '@components/Footer';
-import theme from '@theme';
-import { useDarkMode } from '@context';
+import Header from "@components/Header";
+import Footer from "@components/Footer";
+import theme from "@theme";
+import { useDarkMode } from "@context";
 
 export const Wrapper = styled.div`
     min-height: 100vh;
@@ -28,8 +27,8 @@ export const Wrapper = styled.div`
 
 const Layout = ({ children, pageName }) => {
     const { darkMode } = useDarkMode();
-    const htmlClass = darkMode ? 'dark' : '';
-    let className = '';
+    const htmlClass = darkMode ? "dark" : "";
+    let className = "";
 
     if (pageName) {
         className = `${className} page-${pageName}`;
@@ -38,8 +37,8 @@ const Layout = ({ children, pageName }) => {
     return (
         <>
             <Helmet
-                bodyAttributes={{ class: className, 'data-testid': 'app-body' }}
-                htmlAttributes={{ class: htmlClass, 'data-testid': 'app-html' }}
+                bodyAttributes={{ class: className, "data-testid": "app-body" }}
+                htmlAttributes={{ class: htmlClass, "data-testid": "app-html" }}
             >
                 <title>COVID-19 Tracker</title>
             </Helmet>
@@ -50,11 +49,6 @@ const Layout = ({ children, pageName }) => {
             </Wrapper>
         </>
     );
-};
-
-Layout.propTypes = {
-    children: PropTypes.node.isRequired,
-    pageName: PropTypes.string,
 };
 
 export default Layout;

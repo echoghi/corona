@@ -1,25 +1,23 @@
-/* eslint-disable import/first */
-import L from 'leaflet';
-import React from 'react';
-import Helmet from 'react-helmet';
-import styled from 'styled-components';
+import React from "react";
+import Helmet from "react-helmet";
+import styled from "styled-components";
 
-import Layout from '@components/Layout';
-import Map from '@components/Map';
-import Stats from '@components/Stats';
-import ErrorMessage from '@components/ErrorMessage';
-import LoadingSpinner from '@components/LoadingSpinner';
-import CountrySearch from '@components/CountrySearch';
-import CountryModal from '@components/CountryModal';
+import Layout from "@components/Layout";
+import Map from "@components/Map";
+import Stats from "@components/Stats";
+import ErrorMessage from "@components/ErrorMessage";
+import LoadingSpinner from "@components/LoadingSpinner";
+import CountrySearch from "@components/CountrySearch";
+import CountryModal from "@components/CountryModal";
 
-import { useStats } from '@hooks';
-import { useDarkMode, useCountry } from '@context';
+import { useStats } from "@hooks";
+import { useDarkMode, useCountry } from "@context";
 
 const MapContainer = styled.div`
     position: relative;
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: ${(props) => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
+    box-shadow: ${(props) => (!props.darkMode ? "2px 2px 20px rgba(0, 0, 0, 0.1)" : "none")};
     grid-column-start: 2;
     display: grid;
     grid-auto-columns: 200px 1fr;
@@ -36,110 +34,23 @@ const MapContainer = styled.div`
     }
 `;
 
-const LOCATION = {
-    lat: 0,
-    lng: 0,
-};
-const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 2;
-
 const App = () => {
-    const {
-        selectedCountry,
-        setCountryData,
-        setCountryModal,
-        countryModal,
-        setModalData,
-    } = useCountry();
+    const { selectedCountry, setCountryData } = useCountry();
     const { darkMode } = useDarkMode();
+    const defaultState = selectedCountry.lat === 0 && selectedCountry.long === 0;
 
-    const { stats, loading, error } = useStats('https://corona.lmao.ninja/v2/countries');
+    const zoom = defaultState ? 1 : 5;
+    const defaultBaseMap = darkMode ? "MapBox" : "OpenStreetMap";
+
+    const { stats, loading, error } = useStats("https://corona.lmao.ninja/v2/countries");
 
     if (error) return <ErrorMessage />;
 
     if (!loading && stats) {
         setCountryData(stats);
     }
-    /**
-     * mapEffect
-     * @description Fires a callback once the page renders
-     * @example Here this is and example of being used to zoom in and set a popup on load
-     */
-    async function mapEffect({ leafletElement: map } = {}) {
-        const data = stats || [];
-        const hasData = Array.isArray(data) && data.length > 0;
 
-        if (!hasData) return;
-
-        const geoJson = {
-            type: 'FeatureCollection',
-            features: data.map((country = {}) => {
-                const { countryInfo = {} } = country;
-                const { lat, long: lng } = countryInfo;
-                return {
-                    type: 'Feature',
-                    properties: {
-                        ...country,
-                    },
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [lng, lat],
-                    },
-                };
-            }),
-        };
-
-        const geoJsonLayers = new L.GeoJSON(geoJson, {
-            pointToLayer: (feature = {}, latlng) => {
-                const { properties = {} } = feature;
-                let updatedFormatted;
-                let casesString;
-
-                const { updated, cases } = properties;
-
-                casesString = `${cases}`;
-
-                if (cases > 1000) {
-                    casesString = `${casesString.slice(0, -3)}k+`;
-                }
-
-                if (updated) {
-                    updatedFormatted = new Date(updated).toLocaleString();
-                }
-
-                const options = {
-                    casesString,
-                    updatedFormatted,
-                    ...properties,
-                };
-
-                const min = 1;
-                const factor = 10;
-                const zoomFactor = DEFAULT_ZOOM >= 5 ? 1 : DEFAULT_ZOOM / 10; // adjust divisor for best optics
-
-                return L.circleMarker(latlng, {
-                    className: 'icon',
-                    color: darkMode ? 'rgb(255, 0, 0)' : 'rgb(51, 136, 255)',
-                    radius: Math.floor(Math.log(cases) * factor * zoomFactor) + min,
-                    stroke: false,
-                }).on('click', function (e) {
-                    setCountryModal(!countryModal);
-                    setModalData(options);
-                });
-            },
-        });
-
-        geoJsonLayers.addTo(map);
-    }
-
-    const mapSettings = {
-        center: CENTER,
-        defaultBaseMap: darkMode ? 'MapBox' : 'OpenStreetMap',
-        zoom: selectedCountry ? 5 : DEFAULT_ZOOM,
-        mapEffect,
-    };
-
-    const spinnerCSS = { position: 'absolute', top: 0, right: 0, left: 0, bottom: 0 };
+    const spinnerCSS = { position: "absolute", top: 0, right: 0, left: 0, bottom: 0 };
 
     return (
         <Layout pageName="home">
@@ -153,7 +64,7 @@ const App = () => {
                 {!loading ? (
                     <>
                         <CountrySearch />
-                        <Map {...mapSettings} />
+                        <Map zoom={zoom} defaultBaseMap={defaultBaseMap} />
 
                         <CountryModal />
                     </>

@@ -1,6 +1,6 @@
-import React from 'react';
-import Downshift from 'downshift';
-import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import Downshift from "downshift";
+import { faSearchLocation, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 import {
     Container,
@@ -12,8 +12,8 @@ import {
     Flag,
     Results,
     Result,
-} from './styles';
-import { useDarkMode, useCountry } from '@context';
+} from "./styles";
+import { useDarkMode, useCountry } from "@context";
 
 function CountrySearch() {
     const { countryData, setSelectedCountry } = useCountry();
@@ -27,11 +27,7 @@ function CountrySearch() {
 
     return (
         <Container>
-            <Downshift
-                defaultIsOpen
-                onChange={handleSelection}
-                itemToString={(item) => (item ? item.country : '')}
-            >
+            <Downshift defaultIsOpen onChange={handleSelection} itemToString={(item) => (item ? item.country : "")}>
                 {({
                     getInputProps,
                     getItemProps,
@@ -57,7 +53,14 @@ function CountrySearch() {
                                     icon={faTimesCircle}
                                     color="grey"
                                     size="sm"
-                                    onClick={clearSelection}
+                                    onClick={() => {
+                                        setSelectedCountry({
+                                            iso3: "USA",
+                                            lat: 0,
+                                            long: 0,
+                                        });
+                                        clearSelection();
+                                    }}
                                 />
                             )}
                         </InputContainer>
@@ -67,9 +70,7 @@ function CountrySearch() {
                                       .filter(
                                           (item) =>
                                               !inputValue ||
-                                              item.country
-                                                  .toLowerCase()
-                                                  .includes(inputValue.toLowerCase())
+                                              item.country.toLowerCase().includes(inputValue.toLowerCase())
                                       )
                                       .map((item, index) => (
                                           <Result
@@ -81,10 +82,7 @@ function CountrySearch() {
                                                   item,
                                               })}
                                           >
-                                              <Flag
-                                                  src={item.countryInfo.flag}
-                                                  alt={item.country}
-                                              />
+                                              <Flag src={item.countryInfo.flag} alt={item.country} />
                                               {item.country}
                                           </Result>
                                       ))
