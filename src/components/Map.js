@@ -110,28 +110,22 @@ const Map = ({ children, className, defaultBaseMap = "OpenStreetMap", zoom }) =>
         mapClassName = `${mapClassName} ${className}`;
     }
 
-    if (!isDomAvailable()) {
-        return (
-            <div className={mapClassName}>
-                <p className="map-loading">Loading map...</p>
-            </div>
-        );
-    }
-
     return (
         <div className={mapClassName}>
-            <BaseMap
-                ref={mapRef}
-                center={[selectedCountry.lat, selectedCountry.long]}
-                zoomControl={false}
-                className="map-base"
-                useFlyTo={true}
-                zoom={zoom}
-            >
-                {children}
-                {basemap && <TileLayer {...basemap} />}
-                <ZoomControl position="bottomright" />
-            </BaseMap>
+            {isDomAvailable && (
+                <BaseMap
+                    ref={mapRef}
+                    center={[selectedCountry.lat, selectedCountry.long]}
+                    zoomControl={false}
+                    className="map-base"
+                    useFlyTo={true}
+                    zoom={zoom}
+                >
+                    {children}
+                    {basemap && <TileLayer {...basemap} />}
+                    <ZoomControl position="bottomright" />
+                </BaseMap>
+            )}
         </div>
     );
 };
