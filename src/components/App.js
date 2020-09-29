@@ -36,6 +36,7 @@ const MapContainer = styled.div`
 `;
 
 const App = () => {
+    const isSSR = typeof window === "undefined";
     const { selectedCountry, setCountryData } = useCountry();
     const { darkMode } = useDarkMode();
     const defaultState = selectedCountry.lat === 0 && selectedCountry.long === 0;
@@ -64,14 +65,16 @@ const App = () => {
             <Stats url="https://corona.lmao.ninja/v2/all" />
 
             <MapContainer darkMode={darkMode}>
-                <Suspense fallback={<LoadingSpinner style={spinnerCSS} />}>
-                    <>
-                        <CountrySearch />
-                        <Map zoom={zoom} defaultBaseMap={defaultBaseMap} />
+                {!isSSR && (
+                    <Suspense fallback={<LoadingSpinner style={spinnerCSS} />}>
+                        <>
+                            <CountrySearch />
+                            <Map zoom={zoom} defaultBaseMap={defaultBaseMap} />
 
-                        <CountryModal />
-                    </>
-                </Suspense>
+                            <CountryModal />
+                        </>
+                    </Suspense>
+                )}
             </MapContainer>
         </Layout>
     );
