@@ -1,6 +1,6 @@
-import React from "react";
-import Downshift from "downshift";
-import { faSearchLocation, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import Downshift from 'downshift';
+import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import {
     Container,
@@ -12,8 +12,8 @@ import {
     Flag,
     Results,
     Result,
-} from "./styles";
-import { useDarkMode, useCountry } from "@context";
+} from './styles';
+import { useDarkMode, useCountry } from '@context';
 
 function CountrySearch() {
     const { countryData, setSelectedCountry, setCountryModal } = useCountry();
@@ -27,7 +27,7 @@ function CountrySearch() {
 
     return (
         <Container>
-            <Downshift defaultIsOpen onChange={handleSelection} itemToString={(item) => (item ? item.country : "")}>
+            <Downshift defaultIsOpen onChange={handleSelection} itemToString={(item) => (item ? item.country : '')}>
                 {({
                     getInputProps,
                     getItemProps,
@@ -55,7 +55,7 @@ function CountrySearch() {
                                     size="sm"
                                     onClick={() => {
                                         setSelectedCountry({
-                                            iso3: "USA",
+                                            iso3: 'USA',
                                             lat: 0,
                                             long: 0,
                                         });

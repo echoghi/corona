@@ -1,17 +1,15 @@
-import React, { useRef } from "react";
-import L from "leaflet";
-import { Map as BaseMap, TileLayer, ZoomControl } from "react-leaflet";
+import React, { useRef } from 'react';
+import L from 'leaflet';
+import { Map as BaseMap, TileLayer, ZoomControl } from 'react-leaflet';
 
-import { useConfigureLeaflet, useMapServices, useRefEffect } from "@hooks";
-import { isDomAvailable } from "@lib/util";
-import { useCountry, useDarkMode } from "@context";
-import { useStats } from "@hooks";
+import { useConfigureLeaflet, useMapServices, useRefEffect } from '@hooks';
+import { isDomAvailable } from '@lib/util';
+import { useCountry, useDarkMode } from '@context';
 
-const Map = ({ children, className, defaultBaseMap = "OpenStreetMap", zoom }) => {
+const Map = ({ children, className, defaultBaseMap = 'OpenStreetMap', zoom }) => {
     const { darkMode } = useDarkMode();
-    const { selectedCountry, setCountryModal, countryModal, setModalData } = useCountry();
+    const { selectedCountry, countryData, setCountryModal, setModalData } = useCountry();
     const mapRef = useRef();
-    const { stats } = useStats("https://corona.lmao.ninja/v2/countries");
     useConfigureLeaflet();
 
     /**
@@ -20,23 +18,23 @@ const Map = ({ children, className, defaultBaseMap = "OpenStreetMap", zoom }) =>
      * @example Here this is and example of being used to zoom in and set a popup on load
      */
     async function mapEffect({ leafletElement: map } = {}) {
-        const data = stats || [];
+        const data = countryData || [];
         const hasData = Array.isArray(data) && data.length > 0;
 
         if (!hasData) return;
 
         const geoJson = {
-            type: "FeatureCollection",
+            type: 'FeatureCollection',
             features: data.map((country = {}) => {
                 const { countryInfo = {} } = country;
                 const { lat, long: lng } = countryInfo;
                 return {
-                    type: "Feature",
+                    type: 'Feature',
                     properties: {
                         ...country,
                     },
                     geometry: {
-                        type: "Point",
+                        type: 'Point',
                         coordinates: [lng, lat],
                     },
                 };
@@ -72,11 +70,11 @@ const Map = ({ children, className, defaultBaseMap = "OpenStreetMap", zoom }) =>
                 const zoomFactor = zoom === 1 ? 1 / 6 : 1 / 3; // adjust divisor for best optics
 
                 return L.circleMarker(latlng, {
-                    className: "icon",
-                    color: darkMode ? "rgb(255, 0, 0)" : "rgb(51, 136, 255)",
+                    className: 'icon',
+                    color: darkMode ? 'rgb(255, 0, 0)' : 'rgb(51, 136, 255)',
                     radius: Math.floor(Math.log(cases) * factor * zoomFactor) + min,
                     stroke: false,
-                }).on("click", function (e) {
+                }).on('click', function (e) {
                     setCountryModal(true);
                     setModalData(options);
                 });
@@ -85,7 +83,7 @@ const Map = ({ children, className, defaultBaseMap = "OpenStreetMap", zoom }) =>
 
         map.eachLayer((layer) => {
             const layerName = layer.options.name;
-            const isBaseLayer = layerName === "MapBox" || layerName === "OpenStreetMap";
+            const isBaseLayer = layerName === 'MapBox' || layerName === 'OpenStreetMap';
 
             // remove all previous markers/layers
             if (!isBaseLayer) map.removeLayer(layer);

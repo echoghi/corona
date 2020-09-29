@@ -1,13 +1,13 @@
 import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
-
 import "assets/stylesheets/application.scss";
 
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 import theme from "@theme";
 import { useDarkMode } from "@context";
+import { useMediaQuery } from "@material-ui/core";
 
 export const Wrapper = styled.div`
     min-height: 100vh;
@@ -27,11 +27,11 @@ export const Wrapper = styled.div`
 
 const Layout = ({ children, pageName }) => {
     const { darkMode } = useDarkMode();
-    const htmlClass = darkMode ? "dark" : "";
+    const htmlClass = darkMode ? "dark" : "light";
     let className = "";
 
     if (pageName) {
-        className = `${className} page-${pageName}`;
+        className = `page-${pageName}`;
     }
 
     return (
