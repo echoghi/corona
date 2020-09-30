@@ -51,18 +51,19 @@
     color: #1a1053;
     align-items: center;
 
-    &.dark {
-        color: $white-primary;
-
-        &:hover {
-            background: $white-primary;
-        }
-    }
-
     &:hover {
         background: #dfdbf0;
         color: #1a1053;
         cursor: pointer;
+    }
+
+    &.dark {
+        color: $white-primary;
+
+        &:hover {
+            background: $dark-secondary;
+            color: $white-primary;
+        }
     }
 
     &__flag {
