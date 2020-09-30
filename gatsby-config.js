@@ -7,12 +7,13 @@ module.exports = {
         'gatsby-plugin-netlify',
         'gatsby-plugin-offline',
         'gatsby-plugin-zopfli',
+        'gatsby-plugin-webpack-bundle-analyzer',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `images`,
-                path: `${__dirname}/src/assets/images`
-            }
+                path: `${__dirname}/src/assets/images`,
+            },
         },
         'gatsby-plugin-react-leaflet',
         {
@@ -30,8 +31,8 @@ module.exports = {
                 // An optional attribute which provides support for CORS check.
                 // If you do not provide a crossOrigin option, it will skip CORS for manifest.
                 // Any invalid keyword or empty string defaults to `anonymous`
-                crossOrigin: `use-credentials`
-            }
-        }
-    ]
+                crossOrigin: `use-credentials`,
+            },
+        },
+    ],
 };
