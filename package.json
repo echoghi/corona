@@ -11,6 +11,7 @@
         "add": "2.0.6",
         "downshift": "5.0.6",
         "gatsby": "^2.20.12",
+        "gatsby-cli": "^2.12.101",
         "leaflet": "^1.6.0",
         "react": "^16.13.1",
         "react-countup": "4.3.3",
