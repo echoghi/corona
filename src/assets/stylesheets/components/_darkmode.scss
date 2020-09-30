@@ -1,0 +1,29 @@
+@keyframes spinGrow {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.5);
+    }
+
+    100% {
+        transform: rotate(359deg) scale(1);
+    }
+}
+
+.darkmode {
+    &__icon {
+        display: block;
+        cursor: pointer;
+
+        &:hover {
+            animation: 3s spinGrow infinite linear;
+            transition: transform 500ms;
+        }
+    }
+
+    &__container {
+        grid-column-start: 2;
+    }
+}

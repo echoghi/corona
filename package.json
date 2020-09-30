@@ -19,7 +19,6 @@
         "gatsby-plugin-react-leaflet": "^2.0.13",
         "gatsby-plugin-resolve-src": "^2.1.0",
         "gatsby-plugin-sass": "^2.3.14",
-        "gatsby-plugin-styled-components": "^3.3.12",
         "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
         "gatsby-plugin-zopfli": "^2.0.0",
         "gatsby-source-filesystem": "^2.3.31",
@@ -29,7 +28,7 @@
         "react-dom": "^16.13.1",
         "react-helmet": "^5.2.0",
         "react-leaflet": "^2.6.3",
-        "styled-components": "5.1.0"
+        "yarn": "^1.22.10"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "5.9.0",

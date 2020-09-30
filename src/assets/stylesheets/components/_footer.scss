@@ -1,13 +1,14 @@
-import styled from 'styled-components';
-import theme from '@theme';
-
-export const Container = styled.footer`
-    color: ${(props) => (props.darkMode ? theme.white.primary : theme.dark.primary)};
+footer {
+    color: #121212;
     width: 100%;
     margin: 2rem 0;
     height: 2em;
     line-height: 2em;
     text-align: center;
+
+    &.dark {
+        color: #fff;
+    }
 
     p {
         font-size: 1em;
@@ -17,4 +18,4 @@ export const Container = styled.footer`
     @media (max-width: 767px) {
         margin: 8rem 0;
     }
-`;
+}

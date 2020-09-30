@@ -1,0 +1,41 @@
+header {
+    transition: color ease-in 0.2s;
+    background: #fff;
+    z-index: 9999;
+
+    h1 {
+        color: #6135fc;
+        font-size: 35px;
+        margin: 2rem 0;
+        font-weight: bold;
+        align-items: center;
+        display: flex;
+
+        @media (max-width: 767px) {
+            font-size: 20px;
+        }
+    }
+
+    div {
+        grid-column-start: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &.dark {
+        background: #121212;
+
+        h1 {
+            color: #fff;
+        }
+    }
+
+    @media (max-width: 767px) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        padding: 0 15px;
+    }
+}

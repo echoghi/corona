@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 
 import Layout from '@components/Layout';
 import Map from '@components/Map';
@@ -12,27 +11,6 @@ import ErrorMessage from '@components/ErrorMessage';
 
 import { useStats } from '@hooks';
 import { useDarkMode, useCountry } from '@context';
-
-const MapContainer = styled.div`
-    position: relative;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: ${(props) => (!props.darkMode ? '2px 2px 20px rgba(0, 0, 0, 0.1)' : 'none')};
-    grid-column-start: 2;
-    display: grid;
-    grid-auto-columns: 200px 1fr;
-    grid-auto-rows: 1fr 150px;
-    grid-gap: 2rem;
-    max-height: 60vh;
-    min-height: 60vh;
-    transition: 0.2s all ease;
-
-    @media (max-width: 767px) {
-        display: block;
-        padding: 0;
-        margin: 1rem 0;
-    }
-`;
 
 const App = () => {
     const { selectedCountry, setCountryData } = useCountry();
@@ -62,7 +40,7 @@ const App = () => {
 
             <Stats url="https://corona.lmao.ninja/v2/all" />
 
-            <MapContainer darkMode={darkMode}>
+            <div className={darkMode ? 'map__container dark' : 'map__container'}>
                 {!loading ? (
                     <>
                         <CountrySearch />
@@ -73,7 +51,7 @@ const App = () => {
                 ) : (
                     <LoadingSpinner style={spinnerCSS} />
                 )}
-            </MapContainer>
+            </div>
         </Layout>
     );
 };

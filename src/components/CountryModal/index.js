@@ -1,7 +1,7 @@
 import React from 'react';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { numberWithCommas } from '@lib/util';
-import { Container, Header, CloseIcon, List, ListItem } from './styles';
 import theme from '@theme';
 import { useDarkMode, useCountry } from '@context';
 
@@ -14,8 +14,9 @@ const CountryModal = () => {
     if (!countryModal) return <div style={{ display: 'none' }} />;
 
     return (
-        <Container darkMode={darkMode} data-testid="map-modal">
-            <CloseIcon
+        <div className={darkMode ? 'modal__container dark' : 'modal__container'} data-testid="map-modal">
+            <FontAwesomeIcon
+                className="modal__close"
                 data-testid="map-modal-close"
                 color={iconColor}
                 size="3x"
@@ -23,23 +24,23 @@ const CountryModal = () => {
                 onClick={() => setCountryModal(false)}
             />
             <div>
-                <Header>{country}</Header>
+                <h2 className="modal__header">{country}</h2>
 
-                <List darkMode={darkMode} data-testid="map-modal-list">
-                    <ListItem darkMode={darkMode} data-testid="map-modal-cases">
+                <ul className={darkMode ? 'modal__stats dark' : 'modal__stats'} data-testid="map-modal-list">
+                    <li data-testid="map-modal-cases">
                         <span>Confirmed:</span> {numberWithCommas(cases)}
-                    </ListItem>
-                    <ListItem darkMode={darkMode} data-testid="map-modal-deaths">
+                    </li>
+                    <li data-testid="map-modal-deaths">
                         <span>Deaths:</span> {numberWithCommas(deaths)}
-                    </ListItem>
-                    <ListItem darkMode={darkMode} data-testid="map-modal-recovered">
+                    </li>
+                    <li data-testid="map-modal-recovered">
                         <span>Recovered:</span> {numberWithCommas(recovered)}
-                    </ListItem>
-                </List>
+                    </li>
+                </ul>
 
                 <span data-testid="map-modal-updated">Last Updated {updatedFormatted}</span>
             </div>
-        </Container>
+        </div>
     );
 };
 

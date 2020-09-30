@@ -1,9 +1,29 @@
 .container {
-  width: 100%;
-  margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .container-content {
-  max-width: 50em;
-  padding: 0 1em;
+    max-width: 50em;
+    padding: 0 1em;
+}
+
+.layout__container {
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background: #fff;
+    transition: color ease-in 0.2s;
+
+    &.dark {
+        background: #121212;
+    }
+
+    @media (max-width: 767px) {
+        padding: 0 1rem;
+        margin-bottom: 4rem;
+    }
 }

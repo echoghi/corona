@@ -1,21 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { getPercentageChange } from '@lib/util';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
-import theme from '@theme';
 import { useDarkMode } from '@context';
-
-const Difference = styled.span`
-    font-size: 0.8rem;
-    margin: 0.5rem;
-    color: ${(props) => (!props.darkMode ? '#1a1053' : theme.white.primary)};
-`;
-
-const Percentage = styled.span`
-    padding: 0 0.5rem;
-    font-weight: bold;
-`;
 
 function StatChange({ current, old, upColor, downColor }) {
     const { darkMode } = useDarkMode();
@@ -38,10 +25,10 @@ function StatChange({ current, old, upColor, downColor }) {
     }
 
     return (
-        <Difference darkMode={darkMode}>
-            <Percentage>{percentChange === 0 ? '---' : `${percentChange}%`}</Percentage>
+        <span className={darkMode ? 'stat__difference dark' : 'stat__difference'}>
+            <span className="stat__percentage">{percentChange === 0 ? '---' : `${percentChange}%`}</span>
             <ChangeIcon percent={percentChange} />
-        </Difference>
+        </span>
     );
 }
 

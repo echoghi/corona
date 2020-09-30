@@ -1,16 +1,15 @@
 import React from 'react';
 import { useDarkMode } from '@context';
-import { Container } from './styles';
 
 const Footer = () => {
     const { darkMode } = useDarkMode();
 
     return (
-        <Container darkMode={darkMode}>
+        <footer className={darkMode ? 'dark' : ''}>
             <div>
                 <p>&copy; {new Date().getFullYear()}, Emile Choghi</p>
             </div>
-        </Container>
+        </footer>
     );
 };
 

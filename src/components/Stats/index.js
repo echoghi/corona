@@ -2,7 +2,6 @@ import React from 'react';
 import CountUp from 'react-countup';
 
 import useStats from '@hooks/useStats';
-import { StatBlock, Confirmed, Recovered, Deaths, StatGrid } from './styles';
 import StatChange from '@components/StatChange';
 import { useDarkMode } from '@context';
 
@@ -14,11 +13,11 @@ function Stats({ url }) {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <StatGrid>
-            <StatBlock darkMode={darkMode} data-testid="app-stat-block">
-                <Confirmed darkMode={darkMode} data-testid="app-stat-cases">
+        <div className="stat__grid">
+            <div className={darkMode ? 'stat__block dark' : 'stat__block'} data-testid="app-stat-block">
+                <span className="confirmed" data-testid="app-stat-cases">
                     {stats ? <CountUp separator="," end={stats.cases} /> : '0'}
-                </Confirmed>
+                </span>
                 <h4>Confirmed</h4>
                 <StatChange
                     current={stats ? stats.cases : 0}
@@ -26,12 +25,12 @@ function Stats({ url }) {
                     upColor="#f9345e"
                     downColor="#6dd428"
                 />
-            </StatBlock>
-            <StatBlock darkMode={darkMode}>
-                <Confirmed darkMode={darkMode} data-testid="app-stat-todayCases">
+            </div>
+            <div className={darkMode ? 'stat__block dark' : 'stat__block'}>
+                <span className="confirmed" data-testid="app-stat-todayCases">
                     {' '}
                     {stats ? <CountUp separator="," end={stats.todayCases} /> : '0'}
-                </Confirmed>
+                </span>
                 <h4>New Cases</h4>
                 <StatChange
                     current={stats ? stats.todayCases : 0}
@@ -39,12 +38,12 @@ function Stats({ url }) {
                     upColor="#f9345e"
                     downColor="#6dd428"
                 />
-            </StatBlock>
-            <StatBlock darkMode={darkMode}>
-                <Recovered darkMode={darkMode} data-testid="app-stat-recovered">
+            </div>
+            <div className={darkMode ? 'stat__block dark' : 'stat__block'}>
+                <span className="recovered" data-testid="app-stat-recovered">
                     {' '}
                     {stats ? <CountUp separator="," end={stats.recovered} /> : '0'}
-                </Recovered>
+                </span>
                 <h4>Recovered</h4>
 
                 <StatChange
@@ -53,11 +52,11 @@ function Stats({ url }) {
                     upColor="#6dd428"
                     downColor="#f9345e"
                 />
-            </StatBlock>
-            <StatBlock darkMode={darkMode}>
-                <Deaths darkMode={darkMode} data-testid="app-stat-deaths">
+            </div>
+            <div className={darkMode ? 'stat__block dark' : 'stat__block'}>
+                <span className="deaths" data-testid="app-stat-deaths">
                     {stats ? <CountUp separator="," end={stats.deaths} /> : '0'}
-                </Deaths>
+                </span>
                 <h4>Deaths</h4>
 
                 <StatChange
@@ -66,8 +65,8 @@ function Stats({ url }) {
                     upColor="#f9345e"
                     downColor="#6dd428"
                 />
-            </StatBlock>
-        </StatGrid>
+            </div>
+        </div>
     );
 }
 

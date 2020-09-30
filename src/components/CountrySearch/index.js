@@ -1,18 +1,7 @@
 import React from 'react';
 import Downshift from 'downshift';
 import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-
-import {
-    Container,
-    ResultsContainer,
-    InputContainer,
-    Input,
-    SearchIcon,
-    CloseIcon,
-    Flag,
-    Results,
-    Result,
-} from './styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDarkMode, useCountry } from '@context';
 
 function CountrySearch() {
@@ -26,7 +15,7 @@ function CountrySearch() {
     }
 
     return (
-        <Container>
+        <div className="search-results__container">
             <Downshift defaultIsOpen onChange={handleSelection} itemToString={(item) => (item ? item.country : '')}>
                 {({
                     getInputProps,
@@ -39,17 +28,19 @@ function CountrySearch() {
                     getRootProps,
                     clearSelection,
                 }) => (
-                    <ResultsContainer>
-                        <InputContainer {...getRootProps({}, { suppressRefError: true })}>
-                            <SearchIcon icon={faSearchLocation} color="grey" size="lg" />
-                            <Input
+                    <div className="results__container">
+                        <div className="search__container" {...getRootProps({}, { suppressRefError: true })}>
+                            <FontAwesomeIcon className="search__icon" icon={faSearchLocation} color="grey" size="lg" />
+                            <input
                                 {...getInputProps()}
+                                className={`search__input${darkMode ? ' dark' : ''}`}
                                 placeholder="Search a country"
                                 darkMode={darkMode}
                                 data-testid="app-country-search"
                             />
                             {inputValue && (
-                                <CloseIcon
+                                <FontAwesomeIcon
+                                    className="search__icon--close"
                                     icon={faTimesCircle}
                                     color="grey"
                                     size="sm"
@@ -64,8 +55,8 @@ function CountrySearch() {
                                     }}
                                 />
                             )}
-                        </InputContainer>
-                        <Results {...getMenuProps()}>
+                        </div>
+                        <ul className="results__list" {...getMenuProps()}>
                             {isOpen
                                 ? countryData
                                       .filter(
@@ -74,7 +65,8 @@ function CountrySearch() {
                                               item.country.toLowerCase().includes(inputValue.toLowerCase())
                                       )
                                       .map((item, index) => (
-                                          <Result
+                                          <li
+                                              className={`result${darkMode ? ' dark' : ''}`}
                                               darkMode={darkMode}
                                               data-testid="app-country-list-item"
                                               {...getItemProps({
@@ -83,16 +75,20 @@ function CountrySearch() {
                                                   item,
                                               })}
                                           >
-                                              <Flag src={item.countryInfo.flag} alt={item.country} />
+                                              <img
+                                                  src={item.countryInfo.flag}
+                                                  alt={item.country}
+                                                  className="result__flag"
+                                              />
                                               {item.country}
-                                          </Result>
+                                          </li>
                                       ))
                                 : null}
-                        </Results>
-                    </ResultsContainer>
+                        </ul>
+                    </div>
                 )}
             </Downshift>
-        </Container>
+        </div>
     );
 }
 
