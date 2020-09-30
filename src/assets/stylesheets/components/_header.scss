@@ -3,6 +3,10 @@ header {
     background: $white-primary;
     z-index: 9999;
 
+    &:focus {
+        outline: none;
+    }
+
     h1 {
         color: #6135fc;
         font-size: 35px;

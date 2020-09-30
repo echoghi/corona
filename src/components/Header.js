@@ -6,12 +6,12 @@ const Header = () => {
     const { darkMode } = useDarkMode();
 
     return (
-        <header className={darkMode ? 'dark' : ''} data-testid="app-header">
+        <header className={darkMode ? 'dark' : ''} data-testid="app-header" tabIndex="0">
             <div>
                 <h1 data-testid="app-heading">
                     <span>Covid-19</span>
                 </h1>
-                <DarkMode />
+                <DarkMode tabIndex="0" />
                 {/* <ul>
                     <li>
                         <Link to="/">Home</Link>
