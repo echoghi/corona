@@ -20,7 +20,7 @@ const Layout = ({ children, pageName }) => {
         <>
             <Helmet
                 bodyAttributes={{ class: className, 'data-testid': 'app-body' }}
-                htmlAttributes={{ class: htmlClass, 'data-testid': 'app-html' }}
+                htmlAttributes={{ class: htmlClass, 'data-testid': 'app-html', lang: 'en' }}
             >
                 <title>COVID-19 Tracker</title>
             </Helmet>

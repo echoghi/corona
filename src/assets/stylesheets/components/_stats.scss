@@ -41,7 +41,7 @@
         box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.2s ease;
 
-        h4 {
+        h1 {
             margin: 0.5rem 1rem;
             font-size: 20px;
             color: #1a1053;
@@ -50,7 +50,7 @@
         &.dark {
             box-shadow: none;
 
-            h4 {
+            h1 {
                 color: #fff;
             }
 
@@ -67,12 +67,12 @@
         }
 
         .recovered {
-            color: #6dd428;
+            color: #46980e;
             font-weight: bold;
         }
 
         .deaths {
-            color: #f9345e;
+            color: #cf163e;
             font-weight: bold;
         }
 
@@ -88,7 +88,7 @@
             text-align: left;
             font-size: 1rem;
 
-            h4 {
+            h1 {
                 margin: 0;
                 padding: 0;
                 margin: 0 10px;

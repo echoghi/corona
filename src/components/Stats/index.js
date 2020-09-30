@@ -18,7 +18,7 @@ function Stats({ url }) {
                 <span className="confirmed" data-testid="app-stat-cases">
                     {stats ? <CountUp separator="," end={stats.cases} /> : '0'}
                 </span>
-                <h4>Confirmed</h4>
+                <h1>Confirmed</h1>
                 <StatChange
                     current={stats ? stats.cases : 0}
                     old={yesterdayData.stats ? yesterdayData.stats.cases : 0}
@@ -31,7 +31,7 @@ function Stats({ url }) {
                     {' '}
                     {stats ? <CountUp separator="," end={stats.todayCases} /> : '0'}
                 </span>
-                <h4>New Cases</h4>
+                <h1>New Cases</h1>
                 <StatChange
                     current={stats ? stats.todayCases : 0}
                     old={yesterdayData.stats ? yesterdayData.stats.todayCases : 0}
@@ -44,7 +44,7 @@ function Stats({ url }) {
                     {' '}
                     {stats ? <CountUp separator="," end={stats.recovered} /> : '0'}
                 </span>
-                <h4>Recovered</h4>
+                <h1>Recovered</h1>
 
                 <StatChange
                     current={stats ? stats.recovered : 0}
@@ -57,7 +57,7 @@ function Stats({ url }) {
                 <span className="deaths" data-testid="app-stat-deaths">
                     {stats ? <CountUp separator="," end={stats.deaths} /> : '0'}
                 </span>
-                <h4>Deaths</h4>
+                <h1>Deaths</h1>
 
                 <StatChange
                     current={stats ? stats.deaths : 0}
