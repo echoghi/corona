@@ -7,8 +7,8 @@ html {
 
 html.dark,
 body.dark {
-    background: #121212;
-    transition: color ease-in 0.2s;
+    background: $dark-primary;
+    transition: $dark-mode-transition;
 }
 
 * {

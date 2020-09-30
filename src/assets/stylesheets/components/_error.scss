@@ -1,6 +1,6 @@
 .error__message {
     color: #f84745;
-    background: #fff;
+    background: $white-primary;
     position: relative;
     display: grid;
     align-items: center;
@@ -11,8 +11,8 @@
     justify-content: center;
 
     &.dark {
-        background: #121212;
-        color: #fff;
+        background: $dark-primary;
+        color: $white-primary;
     }
 
     svg {

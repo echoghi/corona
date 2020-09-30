@@ -35,7 +35,6 @@ function CountrySearch() {
                                 {...getInputProps()}
                                 className={`search__input${darkMode ? ' dark' : ''}`}
                                 placeholder="Search a country"
-                                darkMode={darkMode}
                                 data-testid="app-country-search"
                             />
                             {inputValue && (
@@ -67,7 +66,6 @@ function CountrySearch() {
                                       .map((item, index) => (
                                           <li
                                               className={`result${darkMode ? ' dark' : ''}`}
-                                              darkMode={darkMode}
                                               data-testid="app-country-list-item"
                                               {...getItemProps({
                                                   key: item.country,

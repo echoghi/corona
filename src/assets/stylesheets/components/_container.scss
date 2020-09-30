@@ -15,11 +15,11 @@
     padding: 0 3rem;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background: #fff;
+    background: $white-primary;
     transition: color ease-in 0.2s;
 
     &.dark {
-        background: #121212;
+        background: $dark-primary;
     }
 
     @media (max-width: 767px) {

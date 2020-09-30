@@ -1,6 +1,6 @@
 header {
     transition: color ease-in 0.2s;
-    background: #fff;
+    background: $white-primary;
     z-index: 9999;
 
     h1 {
@@ -24,10 +24,10 @@ header {
     }
 
     &.dark {
-        background: #121212;
+        background: $dark-primary;
 
         h1 {
-            color: #fff;
+            color: $white-primary;
         }
     }
 

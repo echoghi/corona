@@ -6,7 +6,7 @@ export default function LoadingSpinner({ fullPage, ...props }) {
     const fullPageClass = fullPage ? ' full-page' : '';
 
     return (
-        <div className={`loading-container${fullPageClass}`} fullPage={fullPage} {...props}>
+        <div className={`loading-container${fullPageClass}`} {...props}>
             <FontAwesomeIcon className="loading-spinner" icon={faVirus} color="#6dd428" size="5x" />
         </div>
     );

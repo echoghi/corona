@@ -45,7 +45,7 @@
 
         &.dark,
         &.dark li span {
-            color: #fff;
+            color: $white-primary;
         }
     }
 
@@ -66,8 +66,8 @@
         top: 37px;
 
         &.dark {
-            color: #fff;
-            background: #272727;
+            color: $white-primary;
+            background: $dark-secondary;
         }
 
         h2 {

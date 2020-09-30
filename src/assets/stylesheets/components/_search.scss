@@ -52,10 +52,10 @@
     align-items: center;
 
     &.dark {
-        color: #fff;
+        color: $white-primary;
 
         &:hover {
-            background: #fff;
+            background: $white-primary;
         }
     }
 
@@ -105,8 +105,8 @@
         width: 100%;
 
         &.dark {
-            background: #272727;
-            color: #fff;
+            background: $dark-secondary;
+            color: $white-primary;
         }
     }
 }
