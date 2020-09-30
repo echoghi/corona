@@ -7,7 +7,7 @@ import { useDarkMode } from '@context';
 
 function Stats({ url }) {
     const { darkMode } = useDarkMode();
-    const { stats, loading, error } = useStats(url);
+    const { stats, error } = useStats(url);
     const yesterdayData = useStats('https://corona.lmao.ninja/v2/all?yesterday=true');
 
     if (error) return <p>Error: {error.message}</p>;

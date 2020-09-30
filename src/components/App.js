@@ -26,7 +26,7 @@ const App = () => {
         if (!error && !loading && stats) {
             setCountryData(stats);
         }
-    }, [stats, error, loading]);
+    }, [stats, error, loading, setCountryData]);
 
     if (error) return <ErrorMessage />;
 
@@ -36,6 +36,7 @@ const App = () => {
         <Layout pageName="home">
             <Helmet>
                 <title>Covid-19 - Global Trend</title>
+                <meta name="description" content="COVID-19 tracker application" />
             </Helmet>
 
             <Stats url="https://corona.lmao.ninja/v2/all" />
