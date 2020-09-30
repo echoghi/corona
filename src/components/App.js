@@ -17,7 +17,7 @@ const App = () => {
     const { darkMode } = useDarkMode();
     const defaultState = selectedCountry.lat === 0 && selectedCountry.long === 0;
 
-    const zoom = defaultState ? 1 : 5;
+    const zoom = defaultState ? 2 : 5;
     const defaultBaseMap = darkMode ? 'MapBox' : 'OpenStreetMap';
 
     const { stats, loading, error } = useStats('https://corona.lmao.ninja/v2/countries');
