@@ -3,9 +3,10 @@ import { useDarkMode } from '@context';
 
 const Footer = () => {
     const { darkMode } = useDarkMode();
+    const className = darkMode ? 'dark' : undefined;
 
     return (
-        <footer className={darkMode ? 'dark' : undefined}>
+        <footer className={className}>
             <div>
                 <p>&copy; {new Date().getFullYear()}, Emile Choghi</p>
             </div>

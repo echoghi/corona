@@ -4,9 +4,10 @@ import { useDarkMode } from '@context';
 
 const Header = () => {
     const { darkMode } = useDarkMode();
+    const className = darkMode ? 'dark' : undefined;
 
     return (
-        <header className={darkMode ? 'dark' : undefined} data-testid="app-header">
+        <header className={className} data-testid="app-header">
             <div>
                 <h1 data-testid="app-heading">
                     <span>Covid-19</span>
