@@ -26,7 +26,7 @@ function CountrySearch() {
                     highlightedIndex,
                     selectedItem,
                     getRootProps,
-                    clearSelection,
+                    clearSelection
                 }) => (
                     <div className="results__container">
                         <div className="search__container" {...getRootProps({}, { suppressRefError: true })}>
@@ -47,7 +47,7 @@ function CountrySearch() {
                                         setSelectedCountry({
                                             iso3: 'USA',
                                             lat: 0,
-                                            long: 0,
+                                            long: 0
                                         });
                                         setCountryModal(false);
                                         clearSelection();
@@ -55,7 +55,7 @@ function CountrySearch() {
                                 />
                             )}
                         </div>
-                        <ul className="results__list" {...getMenuProps()}>
+                        <ul className={`results__list${darkMode ? ' dark' : ''}`} {...getMenuProps()}>
                             {isOpen
                                 ? countryData
                                       .filter(
@@ -70,7 +70,7 @@ function CountrySearch() {
                                               {...getItemProps({
                                                   key: item.country,
                                                   index,
-                                                  item,
+                                                  item
                                               })}
                                           >
                                               <img

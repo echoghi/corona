@@ -36,6 +36,16 @@
         &::-webkit-scrollbar-thumb:hover {
             background: #1a1053;
         }
+
+        &.dark {
+            &::-webkit-scrollbar-track {
+                background: $dark-secondary;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $white-primary;
+            }
+        }
     }
 
     &__container {
