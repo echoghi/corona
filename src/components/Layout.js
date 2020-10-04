@@ -27,7 +27,7 @@ const Layout = ({ children, pageName }) => {
             <div className={darkMode ? 'layout__container dark' : 'layout__container'}>
                 <Header />
                 <main>{children}</main>
-                <Footer darkMode={darkMode} />
+                <Footer />
             </div>
         </>
     );

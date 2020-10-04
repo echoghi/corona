@@ -6,7 +6,7 @@ const Header = () => {
     const { darkMode } = useDarkMode();
 
     return (
-        <header className={darkMode ? 'dark' : ''} data-testid="app-header">
+        <header className={darkMode ? 'dark' : undefined} data-testid="app-header">
             <div>
                 <h1 data-testid="app-heading">
                     <span>Covid-19</span>

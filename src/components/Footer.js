@@ -5,7 +5,7 @@ const Footer = () => {
     const { darkMode } = useDarkMode();
 
     return (
-        <footer className={darkMode ? 'dark' : ''}>
+        <footer className={darkMode ? 'dark' : undefined}>
             <div>
                 <p>&copy; {new Date().getFullYear()}, Emile Choghi</p>
             </div>

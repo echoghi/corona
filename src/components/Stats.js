@@ -10,11 +10,13 @@ function Stats({ url }) {
     const { stats, error } = useStats(url);
     const yesterdayData = useStats('https://corona.lmao.ninja/v2/all?yesterday=true');
 
+    const statBlockClassName = darkMode ? 'stat__block dark' : 'stat__block';
+
     if (error) return <p>Error: {error.message}</p>;
 
     return (
         <div className="stat__grid">
-            <div className={darkMode ? 'stat__block dark' : 'stat__block'} data-testid="app-stat-block">
+            <div className={statBlockClassName} data-testid="app-stat-block">
                 <span className="confirmed" data-testid="app-stat-cases">
                     {stats ? <CountUp separator="," end={stats.cases} /> : '0'}
                 </span>
@@ -26,7 +28,7 @@ function Stats({ url }) {
                     downColor="#6dd428"
                 />
             </div>
-            <div className={darkMode ? 'stat__block dark' : 'stat__block'}>
+            <div className={statBlockClassName}>
                 <span className="confirmed" data-testid="app-stat-todayCases">
                     {' '}
                     {stats ? <CountUp separator="," end={stats.todayCases} /> : '0'}
@@ -39,7 +41,7 @@ function Stats({ url }) {
                     downColor="#6dd428"
                 />
             </div>
-            <div className={darkMode ? 'stat__block dark' : 'stat__block'}>
+            <div className={statBlockClassName}>
                 <span className="recovered" data-testid="app-stat-recovered">
                     {' '}
                     {stats ? <CountUp separator="," end={stats.recovered} /> : '0'}
@@ -53,7 +55,7 @@ function Stats({ url }) {
                     downColor="#f9345e"
                 />
             </div>
-            <div className={darkMode ? 'stat__block dark' : 'stat__block'}>
+            <div className={statBlockClassName}>
                 <span className="deaths" data-testid="app-stat-deaths">
                     {stats ? <CountUp separator="," end={stats.deaths} /> : '0'}
                 </span>

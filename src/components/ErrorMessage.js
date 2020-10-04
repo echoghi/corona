@@ -6,7 +6,7 @@ import { useDarkMode } from '@context';
 
 export default function ErrorMessage() {
     const { darkMode } = useDarkMode();
-    const className = darkMode ? 'error__message' : 'error__message dark';
+    const className = darkMode ? 'error__message dark' : 'error__message';
 
     return (
         <div className={className}>
